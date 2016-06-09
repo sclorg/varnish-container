@@ -13,8 +13,7 @@ LABEL io.k8s.description="Platform for running Varnish or building Varnish-based
 
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 
-RUN yum install -y centos-release-scl-rh && \
-    yum install -y epel-release && \
+RUN yum install -y centos-release-scl-rh epel-release && \
     yum install -y yum-utils gettext hostname && \
     yum install -y --setopt=tsflags=nodocs nss_wrapper && \
     yum install -y --setopt=tsflags=nodocs bind-utils rh-varnish4-* && \
