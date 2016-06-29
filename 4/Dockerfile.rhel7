@@ -11,9 +11,9 @@ LABEL io.k8s.description="Platform for running Varnish or building Varnish-based
       io.openshift.expose-services="8443:https" \
       io.openshift.tags="builder,varnish,rh-varnish4" \
       BZComponent="rh-varnish4-docker" \
-      Name="rhscl_beta/varnish-4-rhel7" \
+      Name="rhscl/varnish-4-rhel7" \
       Version="4" \
-      Release="9" \
+      Release="12.1" \
       Architecture="x86_64"
 
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
@@ -21,7 +21,7 @@ ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 RUN yum install -y yum-utils gettext hostname && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
-    yum-config-manager --enable rhel-7-server-ose-3.0-rpms && \
+    yum-config-manager --enable rhel-7-server-ose-3.2-rpms && \
     yum install -y --setopt=tsflags=nodocs nss_wrapper && \
     yum install -y --setopt=tsflags=nodocs bind-utils rh-varnish4-* && \
     rm -f /etc/profile.d/lang.sh && \
