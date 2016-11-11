@@ -9,12 +9,14 @@ LABEL io.k8s.description="Platform for running Varnish or building Varnish-based
       io.k8s.display-name="Varnish 4" \
       io.openshift.expose-services="8080:http" \
       io.openshift.expose-services="8443:https" \
-      io.openshift.tags="builder,varnish,rh-varnish4" \
-      BZComponent="rh-varnish4-docker" \
-      Name="rhscl/varnish-4-rhel7" \
-      Version="4" \
-      Release="12.1" \
-      Architecture="x86_64"
+      io.openshift.tags="builder,varnish,rh-varnish4"
+
+# Labels consumed by Red Hat build service
+LABEL com.redhat.component="rh-varnish4-docker" \
+      name="rhscl/varnish-4-rhel7" \
+      version="4" \
+      release="12.1" \
+      architecture="x86_64"
 
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 
