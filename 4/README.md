@@ -1,20 +1,33 @@
-Nginx 1.8 server and a reverse proxy server docker image
-========================================================
+Docker image for Varnish Cache 4.0 HTTP reverse proxy
+=====================================================
 
-The `centos/rh-nginx-18-centos7` image provides an nginx 1.8 server and a reverse proxy server. The image can be used as a base image for other applications based on nginx 1.8 web server.
+This repository contains the source for Varnish Cache 4.0 Docker image.
+The image can be used as a base image for other applications based on Varnish Cache 4.0 or using s2i tool.
 
 
-To pull the `centos/rh-nginx-18-centos7` image, run the following command as root:
+*  **For RHEL based image**
+    ```
+    $ docker pull registry.access.redhat.com/rhscl/varnish-4-rhel7
+    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=4/test/test-app/ rhscl/varnish-4-rhel7 sample-server
+    $ docker run -p 8080:8080 sample-server
+    ```
+
+*  **For CentOS based image**
+    ```
+    $ docker pull centos/varnish-4-centos7
+    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=4/test/test-app/ centos/varnish-4-centos7 sample-server
+    $ docker run -p 8080:8080 sample-server
+    ```
+
+**Accessing the application:**
 ```
-docker pull centos/rh-nginx-18-centos7
+$ curl 127.0.0.1:8080
 ```
 
 
 Configuration
 -------------
-The nginx container image supports the following configuration variable, which can be set by using the `-e` option with the docker run command:
+No further configuration is required.
 
+The Varnish Cache 4.0 Docker image supports the S2I tool. Note that the default.vcl configuration file in the directory accessed by S2I needs to be in the VCL format.
 
-|    Variable name       |    Description                            |
-| :--------------------- | ----------------------------------------- |
-|  `NGINX_LOG_TO_VOLUME` | By default, nginx logs into standard output, so the logs are accessible by using the docker logs command. When `NGINX_LOG_TO_VOLUME` is set, nginx logs into `/var/log/nginx16`, which can be mounted to host system using the Docker volumes. |
