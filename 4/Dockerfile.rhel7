@@ -20,12 +20,13 @@ LABEL com.redhat.component="rh-varnish4-docker" \
 
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 
-RUN yum install -y yum-utils gettext hostname && \
+RUN yum install -y yum-utils && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
     yum-config-manager --enable rhel-7-server-ose-3.2-rpms && \
-    yum install -y --setopt=tsflags=nodocs nss_wrapper && \
-    yum install -y --setopt=tsflags=nodocs bind-utils rh-varnish4-* && \
+    INSTALL_PKGS="gettext hostname nss_wrapper bind-utils rh-varnish4-build rh-varnish4-jemalloc rh-varnish4-jemalloc-devel rh-varnish4-runtime rh-varnish4-scldevel rh-varnish4-varnish rh-varnish4-varnish-docs rh-varnish4-varnish-libs rh-varnish4-varnish-libs-devel" && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
     rm -f /etc/profile.d/lang.sh && \
     rm -f /etc/profile.d/lang.csh && \
     yum clean all
