@@ -27,7 +27,7 @@ LABEL summary="$SUMMARY" \
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 
 RUN yum install -y centos-release-scl-rh epel-release && \
-    INSTALL_PKGS="yum-utils gettext hostname nss_wrapper bind-utils rh-varnish4-jemalloc rh-varnish4-jemalloc-devel rh-varnish4-runtime rh-varnish4-scldevel rh-varnish4-varnish rh-varnish4-varnish-docs rh-varnish4-varnish-libs rh-varnish4-varnish-libs-devel" && \
+    INSTALL_PKGS="yum-utils gettext hostname nss_wrapper bind-utils rh-varnish4-varnish" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     rm -f /etc/profile.d/lang.sh && \
