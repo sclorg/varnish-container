@@ -5,18 +5,31 @@ FROM centos/s2i-base-centos7
 EXPOSE 8080
 EXPOSE 8443
 
-LABEL io.k8s.description="Platform for running Varnish or building Varnish-based application" \
+ENV SUMMARY="Platform for running Varnish or building Varnish-based application" \
+    DESCRIPTION="Varnish available as docker container is a base platform for \
+running Varnish server or building Varnish-based application. \
+Varnish Cache stores web pages in memory so web servers don't have to create \
+the same web page over and over again. Varnish Cache serves pages much faster \
+than any application server; giving the website a significant speed up."
+
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$SUMMARY" \
       io.k8s.display-name="Varnish 4" \
       io.openshift.expose-services="8080:http" \
       io.openshift.expose-services="8443:https" \
-      io.openshift.tags="builder,varnish,rh-varnish4"
+      io.openshift.tags="builder,varnish,rh-varnish4" \
+      com.redhat.component="rh-varnish4-docker" \
+      name="centos/varnish-4-centos7" \
+      version="4" \
+      release="1"
 
 ENV VARNISH_CONFIGURATION_PATH=/etc/opt/rh/rh-varnish4/varnish
 
 RUN yum install -y centos-release-scl-rh epel-release && \
-    yum install -y yum-utils gettext hostname && \
-    yum install -y --setopt=tsflags=nodocs nss_wrapper && \
-    yum install -y --setopt=tsflags=nodocs bind-utils rh-varnish4-* && \
+    INSTALL_PKGS="yum-utils gettext hostname nss_wrapper bind-utils rh-varnish4-varnish" && \
+    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
     rm -f /etc/profile.d/lang.sh && \
     rm -f /etc/profile.d/lang.csh && \
     yum clean all
