@@ -14,7 +14,7 @@ than any application server; giving the website a significant speed up."
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
-      io.k8s.description="$SUMMARY" \
+      io.k8s.description="$DESCRIPTION" \
       io.k8s.display-name="Varnish 4" \
       io.openshift.expose-services="8080:http" \
       io.openshift.expose-services="8443:https" \
