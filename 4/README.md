@@ -1,7 +1,7 @@
 Varnish Cache 4.0 HTTP reverse proxy Docker image
 =====================================================
 
-This container image includes Varnish 4.0 server and a reverse proxy for OpenShift and general usage.
+This container image includes Varnish 4.0 Cache server and a reverse proxy for OpenShift and general usage.
 Users can choose between RHEL and CentOS based images.
 The RHEL image is available in the [Red Hat Container Catalog](https://access.redhat.com/containers/#/registry.access.redhat.com/rhscl/varnish-4-rhel7)
 as registry.access.redhat.com/rhscl/varnish-4-rhel7.
@@ -30,12 +30,14 @@ resulting image with [Docker](http://docker.io) execute:
 
 *  **For RHEL based image**
     ```
-    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=4/test/test-app/ rhscl/varnish-4-rhel7 sample-server
+    $ docker pull registry.access.redhat.com/rhscl/varnish-4-rhel7
+    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=4/test/test-app/ registry.access.redhat.com/rhscl/varnish-4-rhel7 sample-server
     $ docker run -p 8080:8080 sample-server
     ```
 
 *  **For CentOS based image**
     ```
+    $ docker pull centos/varnish-4-centos7
     $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=4/test/test-app/ centos/varnish-4-centos7 sample-server
     $ docker run -p 8080:8080 sample-server
     ```
