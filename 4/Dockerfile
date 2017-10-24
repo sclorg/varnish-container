@@ -48,7 +48,8 @@ RUN chmod -R a+rwx /opt/app-root/etc && \
     chmod -R a+rwx /etc/opt/rh/rh-varnish4 && \
     chown -R 1001:0 /opt/app-root && \
     chown -R 1001:0 /var/opt/rh/rh-varnish4 && \
-    chown -R 1001:0 /etc/opt/rh/rh-varnish4
+    chown -R 1001:0 /etc/opt/rh/rh-varnish4 && \
+    rpm-file-permissions
 
 USER 1001
 
