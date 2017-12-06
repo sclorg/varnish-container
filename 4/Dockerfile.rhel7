@@ -31,7 +31,7 @@ RUN yum install -y yum-utils && \
     yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum-config-manager --enable rhel-7-server-rpms && \
     yum-config-manager --enable rhel-7-server-optional-rpms && \
-    INSTALL_PKGS="gettext hostname nss_wrapper bind-utils rh-varnish4-varnish" && \
+    INSTALL_PKGS="gettext hostname nss_wrapper bind-utils rh-varnish4-varnish gcc" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     rm -f /etc/profile.d/lang.sh && \
