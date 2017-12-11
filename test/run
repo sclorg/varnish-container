@@ -162,7 +162,7 @@ test_application() {
   # Wait for the container to write it's CID file
   wait_for_cid
 
-  test_scl_usage "varnishd -V" "varnish-4"
+  test_scl_usage "varnishd -V" "varnish-$VERSION"
   check_result $?
 
   test_connection

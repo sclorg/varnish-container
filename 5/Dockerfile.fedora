@@ -1,0 +1,41 @@
+# requires https://src.fedoraproject.org/container/s2i-core/pull-request/1
+FROM candidate-registry.fedoraproject.org/f27/s2i-core:latest
+
+EXPOSE 8080
+EXPOSE 8443
+
+ENV SUMMARY="Platform for running Varnish or building Varnish-based application" \
+    DESCRIPTION="Varnish available as docker container is a base platform for \
+running Varnish server or building Varnish-based application. \
+Varnish Cache stores web pages in memory so web servers don't have to create \
+the same web page over and over again. Varnish Cache serves pages much faster \
+than any application server; giving the website a significant speed up." \
+    VARNISH_CONFIGURATION_PATH=/etc/varnish
+
+LABEL summary="$SUMMARY" \
+      description="$DESCRIPTION" \
+      io.k8s.description="$DESCRIPTION" \
+      io.k8s.display-name="Varnish 5" \
+      io.openshift.expose-services="8080:http,8443:https" \
+      io.openshift.tags="builder,varnish" \
+      name="$FGC/varnish" \
+      version="0" \
+      release="1" \
+      maintainer="SoftwareCollections.org <sclorg@redhat.com>" \
+      usage="Invoke this container directly to get more info on how it should be used."
+
+RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish" && \
+    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    dnf clean all && \
+    fix-permissions $VARNISH_CONFIGURATION_PATH && \
+    fix-permissions /var/lib/varnish && \
+    rpm-file-permissions
+
+COPY ./s2i/bin/ $STI_SCRIPTS_PATH
+
+COPY ./root/ /
+
+USER 1001
+
+CMD ["$STI_SCRIPTS_PATH/usage"]
