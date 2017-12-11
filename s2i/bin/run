@@ -6,14 +6,27 @@ set -e
 
 . ${VARNISH_CONFIGURATION_PATH}/varnish.params
 
+VERSION=$(varnishd -V 2>&1 | egrep -o "varnish-[0-9]")
+
+VARNISH_TTL=${VARNISH_TTL:-120}
+
+if [ "${VERSION}" == "varnish-4" ]; then
+  PORT_EXPOSE="-a :8080,:8443"
+  USER_GROUP='-u default -g root'
+elif [ "${VERSION}" == "varnish-5" ]; then
+  PORT_EXPOSE="-a :8080 -a :8443"
+  USER_GROUP='-j unix,user=default,ccgroup=root'
+else
+  echo "Unsupported version of varnishd: ${VERSION}"
+  exit 3
+fi
+
 exec varnishd \
-	-F \
-	-f $VARNISH_VCL_CONF \
-	-a :8080,:8443 \
-	-T 127.0.0.1:8081 \
-	-t $VARNISH_TTL \
-	-u default \
-	-g root \
-	-S $VARNISH_SECRET_FILE \
-	-s $VARNISH_STORAGE \
-	$DAEMON_OPTS
+  -F \
+  -f $VARNISH_VCL_CONF \
+  ${PORT_EXPOSE} \
+  -T 127.0.0.1:8081 \
+  -t $VARNISH_TTL \
+  -S $VARNISH_SECRET_FILE \
+  -s $VARNISH_STORAGE \
+  $DAEMON_OPTS
