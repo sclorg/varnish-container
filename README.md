@@ -27,7 +27,8 @@ Installation
 To build a Varnish image, choose either the CentOS or RHEL based image:
 *  **RHEL based image**
 
-    This image is available in Red Hat Container Registry. To download it run:
+    These images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/#/registry.access.redhat.com/rhscl/varnish-4-rhel7).
+    To download it run:
 
     ```
     $ docker pull registry.access.redhat.com/rhscl/varnish-4-rhel7
@@ -68,7 +69,7 @@ Usage
 ---------------------------------
 
 For information about usage of Dockerfile for Varnish 4,
-see [usage documentation](4/README.md).
+see [usage documentation](4).
 
 Test
 ---------------------
