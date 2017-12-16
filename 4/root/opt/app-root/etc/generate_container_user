@@ -1,5 +1,5 @@
 # Set current user in nss_wrapper
-PASSWD_DIR="/opt/app-root/etc"
+PASSWD_DIR="${APP_ROOT}/etc"
 
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
