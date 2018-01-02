@@ -2,13 +2,14 @@ Varnish HTTP accelerator Docker images
 ======================================
 
 This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
-Users can choose between RHEL and CentOS based images.
+Users can choose between RHEL, CentOS and Fedora based images.
 
 
 Versions
 ---------------
 Varnish versions currently provided are:
 * [varnish-4](4)
+* [varnish-5](5) (Fedora only at the moment)
 
 RHEL versions currently supported are:
 * RHEL7
@@ -39,7 +40,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
 
     ```
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
-    $ cd Varnish-container
+    $ cd varnish-container
     $ git submodule update --init
     $ make build TARGET=rhel7 VERSIONS=4
     ```
@@ -56,9 +57,20 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
 
     ```
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
-    $ cd Varnish-container
+    $ cd varnish-container
     $ git submodule update --init
     $ make build TARGET=centos7 VERSIONS=4
+    ```
+
+*  **Fedora based image**
+
+    You need to build the Fedora variant locally:
+
+    ```
+    $ git clone --recursive https://github.com/sclorg/varnish-container.git
+    $ cd varnish-container
+    $ git submodule update --init
+    $ make build TARGET=fedora VERSIONS=5
     ```
 
 **Notice: By omitting the `VERSIONS` parameter, the build/test action will be performed
@@ -95,6 +107,14 @@ Users can choose between testing a Varnish test application based on a RHEL or C
     $ cd varnish-container
     $ git submodule update --init
     $ make test TARGET=centos7 VERSIONS=4
+    ```
+
+*  **Fedora based image**
+
+    ```
+    $ cd varnish-container
+    $ git submodule update --init
+    $ make test TARGET=fedora VERSIONS=5
     ```
 
 **Notice: By omitting the `VERSIONS` parameter, the build/test action will be performed
