@@ -35,7 +35,6 @@ RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish" && \
 COPY 5/s2i/bin/ $STI_SCRIPTS_PATH
 
 COPY 5/root/ /
-COPY 5/root-common/ /
 
 USER 1001
 

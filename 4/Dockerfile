@@ -39,7 +39,6 @@ COPY 4/s2i/bin/ $STI_SCRIPTS_PATH
 
 # Copy extra files to the image.
 COPY 4/root/ /
-COPY 4/root-common/ /
 
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
