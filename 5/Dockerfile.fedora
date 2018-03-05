@@ -5,7 +5,7 @@ EXPOSE 8080
 EXPOSE 8443
 
 ENV SUMMARY="Platform for running Varnish or building Varnish-based application" \
-    DESCRIPTION="Varnish available as docker container is a base platform for \
+    DESCRIPTION="Varnish available as container is a base platform for \
 running Varnish server or building Varnish-based application. \
 Varnish Cache stores web pages in memory so web servers don't have to create \
 the same web page over and over again. Varnish Cache serves pages much faster \

@@ -1,4 +1,4 @@
-Varnish HTTP accelerator Docker images
+Varnish HTTP accelerator container images
 ======================================
 
 This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
@@ -19,7 +19,7 @@ CentOS versions currently supported are:
 
 For more information about contributing, see
 [the Contribution Guidelines](https://github.com/sclorg/welcome/blob/master/contribution.md).
-For more information about concepts used in these docker images, see the
+For more information about concepts used in these container images, see the
 [Landing page](https://github.com/sclorg/welcome).
 
 
