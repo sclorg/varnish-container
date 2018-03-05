@@ -1,4 +1,4 @@
-Varnish Cache 4.0 HTTP reverse proxy Docker image
+Varnish Cache 4.0 HTTP reverse proxy container image
 =====================================================
 
 This container image includes Varnish 4.0 Cache server and a reverse proxy for OpenShift and general usage.
@@ -12,7 +12,7 @@ as centos/varnish-4-centos7.
 Description
 -----------
 
-Varnish available as docker container is a base platform for 
+Varnish available as container is a base platform for 
 running Varnish server or building Varnish-based application. 
 Varnish Cache stores web pages in memory so web servers don't have to create 
 the same web page over and over again. Varnish Cache serves pages much faster 
@@ -55,7 +55,7 @@ No further configuration is required.
 
 S2I build support
 -------------
-The Varnish Cache 4.0 Docker image supports the S2I tool (see Usage section). 
+The Varnish Cache 4.0 container image supports the S2I tool (see Usage section). 
 Note that the default.vcl configuration file in the directory accessed by S2I needs 
 to be in the VCL format.
 
