@@ -77,6 +77,13 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
 on all provided versions of Varnish.**
 
 
+
+Contributing
+--------------------------------
+
+In this repository [distgen](https://github.com/devexp-db/distgen/) is used for generating image source files. If you'd like update a Dockerfile, please make changes in specs/multispec.yml and/or Dockerfile.template (or other distgen file) and run `make generate`.
+
+
 Usage
 ---------------------------------
 

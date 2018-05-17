@@ -9,3 +9,6 @@ DOCKER_BUILD_CONTEXT = ..
 .PHONY: $(shell test -f common/common.mk || echo >&2 'Please do "git submodule update --init" first.')
 
 include common/common.mk
+
+# use clean-versions provided by common.mk
+clean-hook: clean-versions
