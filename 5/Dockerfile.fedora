@@ -1,4 +1,3 @@
-# requires https://src.fedoraproject.org/container/s2i-core/pull-request/1
 FROM candidate-registry.fedoraproject.org/f27/s2i-core:latest
 
 EXPOSE 8080
@@ -10,6 +9,7 @@ running Varnish server or building Varnish-based application. \
 Varnish Cache stores web pages in memory so web servers don't have to create \
 the same web page over and over again. Varnish Cache serves pages much faster \
 than any application server; giving the website a significant speed up." \
+    VERSION=0 RELEASE=1 \
     VARNISH_CONFIGURATION_PATH=/etc/varnish
 
 LABEL summary="$SUMMARY" \
@@ -18,24 +18,30 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Varnish 5" \
       io.openshift.expose-services="8080:http,8443:https" \
       io.openshift.tags="builder,varnish" \
+      version="$VERSION" \
+      release="$RELEASE.$DISTTAG" \
+      usage="Invoke this container directly to get more info on how it should be used." \
       name="$FGC/varnish" \
-      version="0" \
-      release="1" \
-      maintainer="SoftwareCollections.org <sclorg@redhat.com>" \
-      usage="Invoke this container directly to get more info on how it should be used."
+      maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish" && \
-    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
+    dnf -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    dnf clean all && \
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
-    rpm-file-permissions
+    rm -f /etc/profile.d/lang.sh && \
+    rm -f /etc/profile.d/lang.csh && \
+    dnf -y clean all --enablerepo='*'
 
+# Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY 5/s2i/bin/ $STI_SCRIPTS_PATH
 
+# Copy extra files to the image.
 COPY 5/root/ /
+
+# Reset permissions of filesystem to default values
+RUN rpm-file-permissions
 
 USER 1001
 
-CMD ["$STI_SCRIPTS_PATH/usage"]
+CMD $STI_SCRIPTS_PATH/usage
