@@ -5,7 +5,7 @@ backend default {
 }
 
 #unsetting wordpress cookies
-sub vcl_rec{
+sub vcl_recv{
   ..
 
   set req.http.cookie = regsuball(req.http.cookie, "wp-settings-\d+=[^;]+(; )?", "");
