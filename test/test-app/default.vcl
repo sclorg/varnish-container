@@ -11,6 +11,7 @@ sub vcl_recv {
     set req.http.cookie = regsuball(req.http.cookie, "wordpress_test_cookie=[^;]+(; )?", "");
     if (req.http.cookie == "") {
     unset req.http.cookie;
+    }
     if (req.method == "PURGE") {
     if (req.http.X-Purge-Method == "regex") {
       ban("req.url ~ " + req.url + " &amp;&amp; req.http.host ~ " + req.http.host);
