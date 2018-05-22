@@ -6,8 +6,9 @@ backend default {
 
 #unsetting wordpress cookies
 sub vcl_recv{
-  ..
 
+                return(synth(301,  "Page moved"));
+    
   set req.http.cookie = regsuball(req.http.cookie, "wp-settings-\d+=[^;]+(; )?", "");
 
   set req.http.cookie = regsuball(req.http.cookie, "wp-settings-time-\d+=[^;]+(; )?", "");
@@ -17,6 +18,19 @@ sub vcl_recv{
   if (req.http.cookie == "") {
 
   unset req.http.cookie;
+  
+  if (req.method == "PURGE") {
+
+    if (req.http.X-Purge-Method == "regex") {
+
+      ban("req.url ~ " + req.url + " &amp;&amp; req.http.host ~ " + req.http.host);
+
+    return (synth(200, "Banned."));
+
+  } else {
+
+    return (purge);
+  
   }
 }
 
@@ -43,26 +57,6 @@ acl internal {
 # Allowing which address can access cron.php or install.php,
 # add the following in acl.
 
-#handling purge requsets
-sub vcl_recv{
-  ...
-  if (req.method == "PURGE") {
-
-    if (req.http.X-Purge-Method == "regex") {
-
-      ban("req.url ~ " + req.url + " &amp;&amp; req.http.host ~ " + req.http.host);
-
-    return (synth(200, "Banned."));
-
-  } else {
-
-    return (purge);
-
-  }
-  }
-}
-
-
 sub vcl_synth {
          if (resp.status == 301) {
              set resp.http.Location = "http://example.org";
@@ -74,8 +68,6 @@ acl purge {
   "wordpress-wordpress-test.127.0.0.1.nip.io";
   server ip address or hostname;
 }
-
-...
 
 if (req.method == "PURGE") {
 
