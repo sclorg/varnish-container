@@ -1,6 +1,6 @@
 vcl 4.0;
 backend default {
-        .host = "varnish.myproject.svc";
+        .host = "172.30.89.167";
         .port = "8080";
 }
 
