@@ -17,7 +17,7 @@ vcl 4.0;
 
 # Default backend definition. Set this to point to your content server.
 backend default {
-    .host = "wordpress-wordpress-test.127.0.0.1.nip.io";
+    .host = "varnish.myproject.svc";
     .port = "8080";
     .connect_timeout = 600s;
     .first_byte_timeout = 600s;
@@ -29,7 +29,7 @@ backend default {
 acl purge {
     "localhost";
     "127.0.0.1";
-    "wordpress-wordpress-test.127.0.0.1.nip.io";
+    "varnish.myproject.svc";
 }
 
 # This function is used when a request is send by a HTTP client (Browser) 
