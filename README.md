@@ -8,8 +8,8 @@ Users can choose between RHEL, CentOS and Fedora based images.
 Versions
 ---------------
 Varnish versions currently provided are:
-* [varnish-4](4)
-* [varnish-5](5) (Fedora only at the moment)
+* [varnish-4](https://github.com/sclorg/varnish-container/tree/generated/4)
+* [varnish-5](https://github.com/sclorg/varnish-container/tree/generated/5)
 
 RHEL versions currently supported are:
 * RHEL7
@@ -88,7 +88,7 @@ Usage
 ---------------------------------
 
 For information about usage of Dockerfile for Varnish 4,
-see [usage documentation](4).
+see [usage documentation](https://github.com/sclorg/varnish-container/tree/generated/4).
 
 Test
 ---------------------
