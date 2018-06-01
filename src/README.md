@@ -24,7 +24,7 @@ The image can be used as a base image for other applications based on Varnish Ca
 Usage
 -----
 
-To build a simple [sample-app](https://github.com/sclorg/varnish-container/tree/master/{{ spec.version }}/test/test-app) application
+To build a simple [sample-app](https://github.com/sclorg/varnish-container/tree/generated/{{ spec.version }}/test/test-app) application
 using standalone [S2I](https://github.com/openshift/source-to-image) and then run the
 resulting image with [Docker](http://docker.io) execute:
 
