@@ -13,7 +13,7 @@
       usage="Invoke this container directly to get more info on how it should be used." \
   {%- else %}
       io.openshift.tags="builder,varnish,rh-varnish{{ spec.version }}" \
-      com.redhat.component="rh-varnish{{ spec.version }}-docker" \
+      com.redhat.component="rh-varnish{{ spec.version }}-container" \
       version="{{ spec.version }}" \
       usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ {{ spec.img_name }} sample-server" \
   {%- endif %}
