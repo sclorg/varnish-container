@@ -12,3 +12,5 @@ include common/common.mk
 
 # use clean-versions provided by common.mk
 clean-hook: clean-versions
+
+build-serial: generate
