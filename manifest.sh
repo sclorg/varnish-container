@@ -37,7 +37,10 @@ DISTGEN_MULTI_RULES="
 "
 
 # Symbolic links
-SYMLINK_RULES=""
+SYMLINK_RULES="
+    link_target=../test
+    link_name=test;
+"
 
 # Files to copy
 COPY_RULES="
@@ -53,11 +56,4 @@ COPY_RULES="
     src=src/s2i/bin/assemble
     dest=s2i/bin/assemble
     mode=0755;
-
-    src=test/run
-    dest=test/run
-    mode=0755;
-
-    src=test/test-app/default.vcl
-    dest=test/test-app/default.vcl;
 "
