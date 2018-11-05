@@ -4,8 +4,8 @@ specs:
   distroinfo:
     fedora:
       distros:
-        - fedora-27-x86_64
-      s2i_base: candidate-registry.fedoraproject.org/f27/s2i-core:latest
+        - fedora-28-x86_64
+      s2i_base: registry.fedoraproject.org/f28/s2i-core:latest
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
       img_name: "$FGC/varnish"
       conf_path: /etc/varnish
@@ -46,5 +46,5 @@ specs:
 matrix:
   exclude:
     - distros:
-        - fedora-27-x86_64
+        - fedora-28-x86_64
       version: "4"
