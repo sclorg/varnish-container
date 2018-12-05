@@ -2,7 +2,7 @@
   {% if config.os.id == "fedora" %}
     VERSION=0 \
   {% endif %}
-    VARNISH_CONFIGURATION_PATH={{ spec.conf_path }}
+    VARNISH_CONFIGURATION_PATH={{ spec.etc_path }}/varnish
 {%- endmacro %}
 
 {% macro labels(config, spec) %}
@@ -10,11 +10,13 @@
       io.openshift.tags="builder,varnish" \
       version="$VERSION" \
       com.redhat.component="varnish" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ {{ spec.img_name }} sample-server" \
-  {%- else %}
+  {%- elif spec.prod == "rhel8" %}
+      io.openshift.tags="builder,varnish{{ spec.version }},varnish-{{ spec.version }}" \
+      com.redhat.component="varnish-{{ spec.version }}-container" \
+      version="1" \
+  {%- else  %}
       io.openshift.tags="builder,varnish,rh-varnish{{ spec.version }}" \
       com.redhat.component="rh-varnish{{ spec.version }}-container" \
       version="{{ spec.version }}" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ {{ spec.img_name }} sample-server" \
   {%- endif %}
 {% endmacro %}
