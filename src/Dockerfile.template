@@ -1,10 +1,6 @@
 {% import "src/macros.tpl" as macros with context %}
 FROM {{ spec.s2i_base}}{% if spec.from_tag %}:{{ spec.from_tag }}{% endif %}
 
-{% if config.os.id != "fedora" %}
-# RHSCL rh-varnish{{ spec.version }} image.
-{% endif %}
-
 EXPOSE 8080
 EXPOSE 8443
 
@@ -22,8 +18,9 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Varnish {{ spec.version }}" \
       io.openshift.expose-services="8080:http,8443:https" \
 {{ macros.labels(config, spec) }}
+      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ {{ spec.img_name }} sample-server" \
       name="{{ spec.img_name }}" \
-      maintainer="SoftwareCollections.org <sclorg@redhat.com>"
+      maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
 RUN INSTALL_PKGS="{{ spec.install_pkgs }}" && \
     {% if spec.repo_setup %}
@@ -34,7 +31,7 @@ RUN INSTALL_PKGS="{{ spec.install_pkgs }}" && \
     {% endif %}
     {{ commands.pkginstaller.install([], {'docs': False}) }} $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    {% if config.os.id == "fedora" %}
+    {% if config.os.id == "fedora" or spec.prod == "rhel8" %}
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
     {% endif %}
@@ -48,24 +45,27 @@ COPY {{ spec.version }}/s2i/bin/ $STI_SCRIPTS_PATH
 # Copy extra files to the image.
 COPY {{ spec.version }}/root/ /
 
-{% if config.os.id != "fedora" %}
+{% if config.os.id != "fedora" and spec.prod != "rhel8" %}
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
 RUN chmod -R a+rwx ${APP_ROOT}/etc && \
-    chmod -R a+rwx /var/opt/rh/rh-varnish{{ spec.version }} && \
-    chmod -R a+rwx /etc/opt/rh/rh-varnish{{ spec.version }} && \
+    chmod -R a+rwx {{ spec.var_path }} && \
+    chmod -R a+rwx {{ spec.etc_path }} && \
     chown -R 1001:0 ${APP_ROOT} && \
-    chown -R 1001:0 /var/opt/rh/rh-varnish{{ spec.version }} && \
-    chown -R 1001:0 /etc/opt/rh/rh-varnish{{ spec.version }}
+    chown -R 1001:0 {{ spec.var_path }} && \
+    chown -R 1001:0 {{ spec.etc_path }}
+{% else %}
+RUN chmod -R a+rwx ${APP_ROOT}/etc && \
+    chown -R 1001:0 ${APP_ROOT}
 {% endif %}
 # Reset permissions of filesystem to default values
 RUN rpm-file-permissions
 
 USER 1001
 
-{% if config.os.id != "fedora" %}
-# VOLUME ["/etc/opt/rh/rh-varnish{{ spec.version }}/varnish"]
+{% if config.os.id != "fedora" and spec.prod != "rhel8" %}
+# VOLUME ["{{ spec.etc_path }}/varnish"]
 
 ENV BASH_ENV=${APP_ROOT}/etc/scl_enable \
     ENV=${APP_ROOT}/etc/scl_enable \
