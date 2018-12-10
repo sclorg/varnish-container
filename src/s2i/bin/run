@@ -4,7 +4,9 @@ source /opt/app-root/etc/generate_container_user
 
 set -e
 
+{% if spec.version|int < 6 %}
 . ${VARNISH_CONFIGURATION_PATH}/varnish.params
+{% endif %}
 
 VERSION=$(varnishd -V 2>&1 | egrep -o "varnish-[0-9]")
 
@@ -16,11 +18,15 @@ if [ "${VERSION}" == "varnish-4" ]; then
 elif [ "${VERSION}" == "varnish-5" ]; then
   PORT_EXPOSE="-a :8080 -a :8443"
   USER_GROUP='-j unix,user=default,ccgroup=root'
+elif [ "${VERSION}" == "varnish-6" ]; then
+  PORT_EXPOSE="-a :8080 -a :8443"
+  USER_GROUP='-j unix,user=default,ccgroup=root'
 else
   echo "Unsupported version of varnishd: ${VERSION}"
   exit 3
 fi
 
+{% if spec.version|int < 6 %}
 exec varnishd \
   -F \
   -f $VARNISH_VCL_CONF \
@@ -30,3 +36,11 @@ exec varnishd \
   -S $VARNISH_SECRET_FILE \
   -s $VARNISH_STORAGE \
   $DAEMON_OPTS
+{% else %}
+exec varnishd \
+  -F \
+  -f /etc/opt/rh/rh-varnish6/varnish/default.vcl \
+  ${PORT_EXPOSE} \
+  -t $VARNISH_TTL \
+  -s malloc,256m
+{% endif %}
