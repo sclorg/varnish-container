@@ -14,6 +14,10 @@ DISTGEN_RULES="
     src=src/opt/app-root/etc/scl_enable
     dest=root/opt/app-root/etc/scl_enable;
 
+    src=src/s2i/bin/assemble
+    dest=s2i/bin/assemble
+    mode=0755;
+
     src=src/s2i/bin/usage
     dest=s2i/bin/usage
     mode=0755;
@@ -55,8 +59,4 @@ COPY_RULES="
 
     src=src/opt/app-root/etc/passwd.template
     dest=root/opt/app-root/etc/passwd.template;
-
-    src=src/s2i/bin/assemble
-    dest=s2i/bin/assemble
-    mode=0755;
 "
