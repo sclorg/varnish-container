@@ -14,3 +14,4 @@ include common/common.mk
 clean-hook: clean-versions
 
 build-serial: generate
+test-openshift-remote-cluster: generate
