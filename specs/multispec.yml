@@ -39,7 +39,7 @@ specs:
     rhel8:
       distros:
         - rhel-8-x86_64
-      s2i_base: rhel8/s2i-core
+      s2i_base: ubi8/s2i-core
       from_tag: "1"
       prod: "rhel8"
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
