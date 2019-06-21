@@ -26,6 +26,12 @@ else
   exit 3
 fi
 
+if [ ${PLATFORM} == "el7" ]; then
+    VARNISH_VCL=/etc/opt/rh/rh-varnish{{ spec.version }}/varnish/default.vcl
+else
+    VARNISH_VCL=/etc/varnish/default.vcl
+fi
+
 {% if spec.version|int < 6 %}
 exec varnishd \
   -F \
@@ -39,7 +45,7 @@ exec varnishd \
 {% else %}
 exec varnishd \
   -F \
-  -f /etc/opt/rh/rh-varnish6/varnish/default.vcl \
+  -f "$VARNISH_VCL" \
   ${PORT_EXPOSE} \
   -t $VARNISH_TTL \
   -s malloc,256m
