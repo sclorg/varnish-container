@@ -26,12 +26,6 @@ else
   exit 3
 fi
 
-if [ ${PLATFORM} == "el7" ]; then
-    VARNISH_VCL=/etc/opt/rh/rh-varnish{{ spec.version }}/varnish/default.vcl
-else
-    VARNISH_VCL=/etc/varnish/default.vcl
-fi
-
 {% if spec.version|int < 6 %}
 exec varnishd \
   -F \

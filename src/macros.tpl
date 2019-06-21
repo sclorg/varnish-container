@@ -2,6 +2,11 @@
   {% if config.os.id == "fedora" %}
     VERSION=0 \
   {% endif %}
+  {% if (spec.prod == "rhel7" or spec.prod == "centos7") and spec.version|int > 5 %}
+    VARNISH_VCL=/etc/opt/rh/rh-varnish{{ spec.version }}/varnish/default.vcl \
+  {% elif spec.version|int > 5 %}
+    VARNISH_VCL=/etc/varnish/default.vcl \
+  {% endif %}
     VARNISH_CONFIGURATION_PATH={{ spec.etc_path }}/varnish
 {%- endmacro %}
 
