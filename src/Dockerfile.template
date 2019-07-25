@@ -22,7 +22,7 @@ LABEL summary="$SUMMARY" \
       name="{{ spec.img_name }}" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
-RUN INSTALL_PKGS="{{ spec.install_pkgs }}" && \
+RUN {{ macros.populate_install_pkgs(spec) }}
     {% if spec.repo_setup %}
     {{ spec.repo_setup }}
     {% endif %}

@@ -25,3 +25,11 @@
       version="{{ spec.version }}" \
   {%- endif %}
 {% endmacro %}
+
+{% macro populate_install_pkgs(spec) %}
+  {% if (spec.prod == "rhel7" or spec.prod == "centos7") and spec.version == "6" %}
+INSTALL_PKGS="{{ spec.install_pkgs }} rh-varnish6-varnish-modules" && \
+  {%- else %}
+INSTALL_PKGS="{{ spec.install_pkgs }}" && \
+  {%- endif %}
+{% endmacro %}
