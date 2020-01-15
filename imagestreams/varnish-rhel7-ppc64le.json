@@ -1,0 +1,73 @@
+{
+  "apiVersion": "v1",
+  "kind": "ImageStream",
+  "metadata": {
+    "annotations": {
+      "openshift.io/display-name": "Varnish Cache HTTP reverse proxy (varnish)"
+    },
+    "name": "varnish"
+  },
+  "spec": {
+    "tags": [
+      {
+        "annotations": {
+          "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/6/README.md.",
+          "iconClass": "icon-varnish",
+          "openshift.io/display-name": "Varnish 6 Cache HTTP reverse proxy",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "sampleRepo": "https://github.com/sclorg/varnish-container.git",
+          "supports": "varnish",
+          "tags": "builder,varnish,ppc64le",
+          "version": "6"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "registry.redhat.io/rhscl/varnish-6-rhel7:latest"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        },
+        "name": "6"
+      },
+      {
+        "annotations": {
+          "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/5/README.md.",
+          "iconClass": "icon-varnish",
+          "openshift.io/display-name": "Varnish 5 Cache HTTP reverse proxy",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "sampleRepo": "https://github.com/sclorg/varnish-container.git",
+          "supports": "varnish",
+          "tags": "builder,varnish,ppc64le",
+          "version": "5"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "registry.redhat.io/rhscl/varnish-5-rhel7:latest"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        },
+        "name": "5"
+      },
+      {
+        "annotations": {
+          "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/5/README.md.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of Varnish available on OpenShift, including major version updates.",
+          "iconClass": "icon-varnish",
+          "openshift.io/display-name": "Varnish Cache HTTP reverse proxy (Latest)",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "sampleRepo": "https://github.com/sclorg/varnish-container.git",
+          "supports": "varnish",
+          "tags": "builder,varnish,ppc64le"
+        },
+        "from": {
+          "kind": "ImageStreamTag",
+          "name": "6"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        },
+        "name": "latest"
+      }
+    ]
+  }
+}
