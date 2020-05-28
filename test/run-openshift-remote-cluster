@@ -24,7 +24,10 @@ export CT_SKIP_NEW_PROJECT=true
 export CT_SKIP_UPLOAD_IMAGE=true
 export CT_NAMESPACE=openshift
 
-test_varnish_integration varnish ${VERSION} "${IMAGE_NAME}"
+test_varnish_integration "${IMAGE_NAME}" "${VERSION}" varnish
+
+# Check the imagestream
+test_varnish_imagestream
 
 OS_TESTSUITE_RESULT=0
 
