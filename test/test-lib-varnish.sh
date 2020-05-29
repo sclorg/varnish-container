@@ -54,11 +54,10 @@ function test_response_redirect_internal() {
 function test_varnish_integration() {
   local image_name=$1
   local version=$2
-  local import_image=$3
-  VERSION=$version ct_os_test_s2i_app_func "${image_name}" \
-                                           "https://github.com/sclorg/varnish-container.git" \
-                                           test/test-app \
-                                           "test_response_redirect_internal 'http://<IP>:8080' '301' 'oldexample.com' 'http://example.org'"
+  ct_os_test_s2i_app_func "${image_name}" \
+                          "https://github.com/sclorg/varnish-container.git" \
+                          "test/test-app" \
+                          "test_response_redirect_internal 'http://<IP>:8080' '301' 'oldexample.com' 'http://example.org'"
 }
 
 # Check the imagestream
