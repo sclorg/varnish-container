@@ -53,7 +53,6 @@ function test_response_redirect_internal() {
 
 function test_varnish_integration() {
   local image_name=$1
-  local version=$2
   ct_os_test_s2i_app_func "${image_name}" \
                           "https://github.com/sclorg/varnish-container.git" \
                           "test/test-app" \
