@@ -21,7 +21,7 @@ ct_os_check_compulsory_vars
 ct_os_cluster_up
 
 # test with the just built image and an integrated template
-test_varnish_integration "${IMAGE_NAME}" "${VERSION}" varnish
+test_varnish_integration "${IMAGE_NAME}"
 
 # test with a released image and an integrated template
 if [ "${OS}" == "rhel7" ] ; then
@@ -31,7 +31,7 @@ else
 fi
 
 export CT_SKIP_UPLOAD_IMAGE=true
-test_varnish_integration "${PUBLIC_IMAGE_NAME}" "${VERSION}" varnish
+test_varnish_integration "${PUBLIC_IMAGE_NAME}"
 
 # Check the imagestream
 test_varnish_imagestream
