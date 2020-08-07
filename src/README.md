@@ -35,7 +35,7 @@ in Openshift can be achieved with the following step:
 The same application can also be built using the standalone [S2I](https://github.com/openshift/source-to-image) application on systems that have it available:
 
     ```
-    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ rhscl/varnish-{{ spec.version }}-rhel7 sample-server
+    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=test/test-app/ rhscl/varnish-{{ spec.version }}-rhel7 sample-server
     ```
 
 **Accessing the application:**
