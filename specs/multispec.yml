@@ -9,7 +9,7 @@ specs:
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
       img_name: "$FGC/varnish"
       etc_path: /etc
-    centos:
+    centos7:
       distros:
         - centos-7-x86_64
       s2i_base: centos/s2i-core-centos7
@@ -24,6 +24,16 @@ specs:
               echo gpgcheck=0 >> /etc/yum.repos.d/cbs.centos.org_repos_sclo7-rh-varnish{{ spec.version }}-rh-candidate_x86_64_os_.repo && \
       etc_path: /etc/opt/rh/rh-varnish{{ spec.version }}
       var_path: /var/opt/rh/rh-varnish{{ spec.version }}
+    centos8:
+      distros:
+        - centos-8-x86_64
+      s2i_base: centos/s2i-core-centos8
+      install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
+      org: "centos"
+      prod: "centos8"
+      repo_setup: yum -y module enable varnish:{{ spec.version }}  && \
+      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      etc_path: /etc
     rhel7:
       distros:
         - rhel-7-x86_64
@@ -43,7 +53,7 @@ specs:
       from_tag: "1"
       prod: "rhel8"
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
-      repo_setup: yum -y module enable varnish:6  && \
+      repo_setup: yum -y module enable varnish:{{ spec.version }}  && \
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       etc_path: /etc
 
@@ -60,8 +70,10 @@ matrix:
     - distros:
         - fedora-31-x86_64
         - rhel-8-x86_64
+        - centos-8-x86_64
       version: "4"
     - distros:
         - rhel-8-x86_64
+        - centos-8-x86_64
         - fedora-31-x86_64
       version: "5"

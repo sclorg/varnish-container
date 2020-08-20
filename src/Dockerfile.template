@@ -45,7 +45,7 @@ COPY {{ spec.version }}/s2i/bin/ $STI_SCRIPTS_PATH
 # Copy extra files to the image.
 COPY {{ spec.version }}/root/ /
 
-{% if config.os.id != "fedora" and spec.prod != "rhel8" %}
+{% if config.os.id != "fedora" and config.os.version < 8 %}
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
