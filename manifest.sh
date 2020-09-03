@@ -34,6 +34,9 @@ DISTGEN_MULTI_RULES="
     dest=Dockerfile;
 
     src=src/Dockerfile.template
+    dest=Dockerfile.centos8;
+
+    src=src/Dockerfile.template
     dest=Dockerfile.rhel7;
 
     src=src/Dockerfile.template
