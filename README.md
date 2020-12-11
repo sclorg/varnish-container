@@ -1,5 +1,7 @@
 Varnish HTTP accelerator container images
-======================================
+=========================================
+
+Varnish 5 status:[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-5-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-5-centos7), Varnish 6 status:[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-6-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-6-centos7)
 
 This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
 Users can choose between RHEL, CentOS and Fedora based images.
@@ -51,7 +53,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     This image is available on DockerHub. To download it run:
 
     ```
-    $ podman pull centos/varnish-6-centos7
+    $ podman pull quay.io/centos7/varnish-6-centos7
     ```
 
     To build a Varnish image from scratch run:
@@ -82,13 +84,13 @@ on all provided versions of Varnish.**
 
 
 Contributing
---------------------------------
+------------
 
 In this repository [distgen](https://github.com/devexp-db/distgen/) is used for generating image source files. If you'd like update a Dockerfile, please make changes in specs/multispec.yml and/or Dockerfile.template (or other distgen file) and run `make generate`.
 
 
 Usage
----------------------------------
+-----
 For information about usage of Dockerfile for Varnish 5,
 see [usage documentation](https://github.com/sclorg/varnish-container/tree/generated/5).
 
@@ -96,7 +98,7 @@ For information about usage of Dockerfile for Varnish 6,
 see [usage documentation](https://github.com/sclorg/varnish-container/tree/generated/6).
 
 Test
----------------------
+----
 This repository also provides a [S2I](https://github.com/openshift/source-to-image) test framework,
 which launches tests to check functionality of a simple Varnish application built on top of the Varnish image.
 

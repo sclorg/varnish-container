@@ -3,7 +3,7 @@ Varnish Cache {{ spec.version }}.0 HTTP reverse proxy Container image
 This container image includes Varnish {{ spec.version }}.0 Cache server and a reverse proxy for OpenShift and general usage.
 Users can choose between RHEL, CentOS and Fedora based images.
 The RHEL images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/),
-the CentOS images are available on [Docker Hub](https://hub.docker.com/r/centos/),
+the CentOS images are available on [Quay.io](https://quay.io/organization/centos7),
 and the Fedora images are available in [Fedora Registry](https://registry.fedoraproject.org/).
 The resulting image can be run using [podman](https://github.com/containers/libpod).
 
@@ -50,13 +50,13 @@ No further configuration is required.
 
 
 S2I build support
--------------
+-----------------
 The Varnish Cache {{ spec.version }}.0 Container image supports the S2I tool (see Usage section).
 Note that the default.vcl configuration file in the directory accessed by S2I needs 
 to be in the VCL format.
 
 Environment variables and volumes
--------------
+---------------------------------
 No special environment variables or volumes available.
 
 Troubleshooting
