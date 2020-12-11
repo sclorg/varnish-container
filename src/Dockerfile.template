@@ -1,5 +1,5 @@
 {% import "src/macros.tpl" as macros with context %}
-FROM {{ spec.s2i_base}}{% if spec.from_tag %}:{{ spec.from_tag }}{% endif %}
+FROM {{ spec.s2i_base }}{% if spec.from_tag %}:{{ spec.from_tag }}{% endif %}
 
 EXPOSE 8080
 EXPOSE 8443

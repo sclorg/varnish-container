@@ -13,7 +13,6 @@ specs:
       distros:
         - centos-7-x86_64
       s2i_base: quay.io/centos7/s2i-core-centos7
-      from_tag: "1"
       install_pkgs: "gettext hostname nss_wrapper bind-utils rh-varnish{{ spec.version }}-varnish gcc"
       org: "centos7"
       prod: "centos7"
