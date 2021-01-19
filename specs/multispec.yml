@@ -16,7 +16,7 @@ specs:
       install_pkgs: "gettext hostname nss_wrapper bind-utils rh-varnish{{ spec.version }}-varnish gcc"
       org: "centos7"
       prod: "centos7"
-      img_name: "quay.io/{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
       repo_setup: yum install -y centos-release-scl-rh && \
       staging_repo_setup: >-4
           yum-config-manager --add-repo https://cbs.centos.org/repos/sclo7-rh-varnish{{ spec.version }}-rh-candidate/x86_64/os/ && \
