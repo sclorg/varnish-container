@@ -90,26 +90,6 @@
       },
       {
         "annotations": {
-          "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/5/README.md.",
-          "iconClass": "icon-varnish",
-          "openshift.io/display-name": "Varnish 5 Cache HTTP reverse proxy (RHEL 7)",
-          "openshift.io/provider-display-name": "Red Hat, Inc.",
-          "sampleRepo": "https://github.com/sclorg/varnish-container.git",
-          "supports": "varnish",
-          "tags": "builder,varnish",
-          "version": "5"
-        },
-        "from": {
-          "kind": "DockerImage",
-          "name": "registry.redhat.io/rhscl/varnish-5-rhel7:latest"
-        },
-        "referencePolicy": {
-          "type": "Local"
-        },
-        "name": "5"
-      },
-      {
-        "annotations": {
           "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/5/README.md.",
           "iconClass": "icon-varnish",
           "openshift.io/display-name": "Varnish 5 Cache HTTP reverse proxy (RHEL 8)",
@@ -127,26 +107,6 @@
           "type": "Local"
         },
         "name": "5-el8"
-      },
-      {
-        "annotations": {
-          "description": "Store web pages in memory so web servers don't have to create the same web page over and over again on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/sclorg/varnish-container/blob/generated/5/README.md.",
-          "iconClass": "icon-varnish",
-          "openshift.io/display-name": "Varnish 5 Cache HTTP reverse proxy (RHEL 8)",
-          "openshift.io/provider-display-name": "Red Hat, Inc.",
-          "sampleRepo": "https://github.com/sclorg/varnish-container.git",
-          "supports": "varnish",
-          "tags": "builder,varnish",
-          "version": "5"
-        },
-        "from": {
-          "kind": "DockerImage",
-          "name": "registry.redhat.io/rhscl/varnish-5-rhel7:latest"
-        },
-        "referencePolicy": {
-          "type": "Local"
-        },
-        "name": "5-el7"
       }
     ]
   }
