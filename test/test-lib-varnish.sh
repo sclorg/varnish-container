@@ -8,8 +8,9 @@
 
 THISDIR=$(dirname ${BASH_SOURCE[0]})
 
-source ${THISDIR}/test-lib.sh
-source ${THISDIR}/test-lib-openshift.sh
+source "${THISDIR}"/test-lib.sh
+source "${THISDIR}"/test-lib-openshift.sh
+source "${THISDIR}"/test-lib-remote-openshift.sh
 
 function test_response_redirect_internal() {
   local url="$1"
@@ -25,7 +26,7 @@ function test_response_redirect_internal() {
   local status
   local response_code
   local response_file=$(mktemp /tmp/ct_test_response_XXXXXX)
-  local util_image_name='python:3.6'
+  local util_image_name='ubi7/ubi'
 
   ct_os_deploy_cmd_image "${util_image_name}"
 
@@ -68,7 +69,7 @@ function test_varnish_imagestream() {
     *) echo "Imagestream testing not supported for $OS environment." ; return 0 ;;
   esac
 
-  image_stream_file="${THISDIR}/imagestreams/varnish-${OS}.json"
+  image_stream_file="${THISDIR}/imagestreams/varnish-${OS%[0-9]*}.json"
   echo "Running image stream test for stream ${image_stream_file} and test application"
 
   # shellcheck disable=SC2119
