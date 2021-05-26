@@ -1,6 +1,6 @@
 # Variables are documented in common/build.sh.
 BASE_IMAGE_NAME = varnish
-VERSIONS = 5 6
+VERSIONS = 6
 OPENSHIFT_NAMESPACES =
 DOCKER_BUILD_CONTEXT = ..
 
