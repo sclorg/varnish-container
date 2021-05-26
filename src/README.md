@@ -1,5 +1,8 @@
 Varnish Cache {{ spec.version }}.0 HTTP reverse proxy Container image
 =====================================================
+
+[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-{{ spec.version }}-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-{{ spec.version }}-centos7)
+
 This container image includes Varnish {{ spec.version }}.0 Cache server and a reverse proxy for OpenShift and general usage.
 Users can choose between RHEL, CentOS and Fedora based images.
 The RHEL images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/),
