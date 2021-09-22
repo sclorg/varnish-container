@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [5, 6]
+        version: [6]
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: "generated"
 
       - name: Get base image name
         id: base-image-name
