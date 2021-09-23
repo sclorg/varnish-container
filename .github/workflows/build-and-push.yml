@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: "generated"
+          fetch-depth: 0
 
       - name: Get base image name
         id: base-image-name
@@ -23,6 +23,11 @@ jobs:
           # Return only base image name
           BASE_IMAGE_ROW=${row/BASE_IMAGE_NAME = /}
           echo ::set-output name=image_name::$BASE_IMAGE_ROW
+
+      - name: Checkout into generated section
+        run: |
+          apt-get update && apt-get install -y git
+          git checkout origin/generated
 
       - name: Get short version
         id: short_version
