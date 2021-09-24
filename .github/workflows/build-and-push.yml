@@ -26,7 +26,8 @@ jobs:
 
       - name: Checkout into generated section
         run: |
-          git checkout generated
+          git checkout --progress --force -B generated refs/remotes/origin/generated
+          ls -laR
 
       - name: Get short version
         id: short_version
