@@ -26,8 +26,7 @@ jobs:
 
       - name: Checkout into generated section
         run: |
-          apt-get update && apt-get install -y git
-          git checkout origin/generated
+          git checkout generated
 
       - name: Get short version
         id: short_version
