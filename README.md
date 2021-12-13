@@ -1,24 +1,18 @@
 Varnish HTTP accelerator container images
 =========================================
 
-Varnish 5 status:[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-5-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-5-centos7), Varnish 6 status:[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-6-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-6-centos7)
-
 This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
-Users can choose between RHEL, CentOS and Fedora based images.
+Users can choose between RHEL and Fedora based images.
 
 
 Versions
 ---------------
 Varnish versions currently provided are:
-* [varnish-5](https://github.com/sclorg/varnish-container/tree/generated/5)
-* [varnish-6](https://github.com/sclorg/varnish-container/tree/generated/6)
+* [varnish-6](./6)
 
 RHEL versions currently supported are:
-* RHEL7
 * RHEL8
 
-CentOS versions currently supported are:
-* CentOS7
 
 For more information about contributing, see
 [the Contribution Guidelines](https://github.com/sclorg/welcome/blob/master/contribution.md).
@@ -31,11 +25,11 @@ Installation
 To build a Varnish image, choose either the CentOS or RHEL based image:
 *  **RHEL based image**
 
-    These images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/#/registry.access.redhat.com/rhscl/varnish-6-rhel7).
+    These images are available in the [Red Hat Container Catalog](https://catalog.redhat.com/software/containers/rhel8/varnish-6/5ba0ae68bed8bd6ee8198613?container-tabs=overview).
     To download it run:
 
     ```
-    $ podman pull registry.access.redhat.com/rhscl/varnish-6-rhel7
+    $ podman pull registry.redhat.io/rhel8/varnish-6
     ```
 
     To build a RHEL based Varnish image, you need to run the build on a properly
@@ -45,24 +39,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
     $ cd varnish-container
     $ git submodule update --init
-    $ make build TARGET=rhel7 VERSIONS=6
-    ```
-
-*  **CentOS based image**
-
-    This image is available on DockerHub. To download it run:
-
-    ```
-    $ podman pull quay.io/centos7/varnish-6-centos7
-    ```
-
-    To build a Varnish image from scratch run:
-
-    ```
-    $ git clone --recursive https://github.com/sclorg/varnish-container.git
-    $ cd varnish-container
-    $ git submodule update --init
-    $ make build TARGET=centos7 VERSIONS=6
+    $ make build TARGET=rhel8 VERSIONS=6
     ```
 
 *  **Fedora based image**
@@ -73,7 +50,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
     $ cd varnish-container
     $ git submodule update --init
-    $ make build TARGET=fedora VERSIONS=5
+    $ make build TARGET=fedora VERSIONS=6
     ```
 
 Note: while the installation steps are calling `podman`, you can replace any such calls by `docker` with the same arguments.
@@ -91,11 +68,8 @@ In this repository [distgen](https://github.com/devexp-db/distgen/) is used for 
 
 Usage
 -----
-For information about usage of Dockerfile for Varnish 5,
-see [usage documentation](https://github.com/sclorg/varnish-container/tree/generated/5).
-
 For information about usage of Dockerfile for Varnish 6,
-see [usage documentation](https://github.com/sclorg/varnish-container/tree/generated/6).
+see [usage documentation](https://github.com/sclorg/varnish-container/6).
 
 Test
 ----
@@ -106,21 +80,13 @@ Users can choose between testing a Varnish test application based on a RHEL or C
 
 *  **RHEL based image**
 
-    To test a RHEL7 based Varnish image, you need to run the test on a properly
+    To test a RHEL8 based Varnish image, you need to run the test on a properly
     subscribed RHEL machine.
 
     ```
     $ cd varnish-container
     $ git submodule update --init
-    $ make test TARGET=rhel7 VERSIONS=6
-    ```
-
-*  **CentOS based image**
-
-    ```
-    $ cd varnish-container
-    $ git submodule update --init
-    $ make test TARGET=centos7 VERSIONS=6
+    $ make test TARGET=rhel8 VERSIONS=6
     ```
 
 *  **Fedora based image**
@@ -128,7 +94,7 @@ Users can choose between testing a Varnish test application based on a RHEL or C
     ```
     $ cd varnish-container
     $ git submodule update --init
-    $ make test TARGET=fedora VERSIONS=5
+    $ make test TARGET=fedora VERSIONS=6
     ```
 
 **Notice: By omitting the `VERSIONS` parameter, the build/test action will be performed
