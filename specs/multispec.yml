@@ -4,8 +4,8 @@ specs:
   distroinfo:
     fedora:
       distros:
-        - fedora-33-x86_64
-      s2i_base: registry.fedoraproject.org/f33/s2i-core:latest
+        - fedora-34-x86_64
+      s2i_base: registry.fedoraproject.org/f34/s2i-core:latest
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
       img_name: "$FGC/varnish"
       etc_path: /etc
