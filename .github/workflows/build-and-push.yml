@@ -65,7 +65,7 @@ jobs:
           files: "${{ matrix.version }}/${{ matrix.dockerfile }}"
 
       - name: Build image
-        if: steps.check_exclude_file.outputs.files_exists == 'false' && steps.check_dockerfile_file.outputs.files_exists == 'true'
+        if: ${{ steps.check_exclude_file.outputs.files_exists == 'false' && steps.check_dockerfile_file.outputs.files_exists == 'true' }}
         id: build-image
         # https://github.com/marketplace/actions/buildah-build
         uses: redhat-actions/buildah-build@v2
@@ -76,7 +76,7 @@ jobs:
           tags: latest ${{ matrix.tag }} ${{ github.sha }}
 
       - name: Push image to Quay.io/${{ matrix.registry_namespace }} namespace
-        if: steps.check_exclude_centos7_file.outputs.files_exists == 'false' && ${{ matrix.registry_namespace == 'centos7' }}
+        if: ${{ steps.check_exclude_file.outputs.files_exists == 'false' && matrix.registry_namespace == 'centos7' }}
         id: push-to-quay-centos7
         uses: redhat-actions/push-to-registry@v2.2
         with:
@@ -87,7 +87,7 @@ jobs:
           password: ${{ secrets.QUAY_IMAGE_BUILDER_TOKEN }}
 
       - name: Push image to Quay.io/${{ matrix.registry_namespace }} namespace
-        if: steps.check_exclude_centos7_file.outputs.files_exists == 'false' && ${{ matrix.registry_namespace != 'centos7' }}
+        if: ${{ steps.check_exclude_file.outputs.files_exists == 'false' && matrix.registry_namespace != 'centos7' }}
         id: push-to-quay-sclorg
         uses: redhat-actions/push-to-registry@v2.2
         with:
