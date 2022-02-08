@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [6]
         include:
-          - dockerfile: "Dockerfile"
+          - version: "6"
+            dockerfile: "Dockerfile"
             registry_namespace: "centos7"
             tag: "centos7"
-          - dockerfile: "Dockerfile.c9s"
+          - version: "6"
+            dockerfile: "Dockerfile.c9s"
             registry_namespace: "sclorg"
             tag: "c9s"
     steps:
