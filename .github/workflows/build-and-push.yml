@@ -85,10 +85,9 @@ jobs:
         with:
           dockerfiles: ${{ matrix.version }}/${{ matrix.dockerfile }}
           image: ${{ steps.base-image-name.outputs.image_name}}-${{ steps.short_version.outputs.SHORT_VER }}-${{ matrix.tag }}
-          context: ${{ matrix.version }}
           tags: latest ${{ matrix.tag }} ${{ github.sha }}
 
-      - name: Push image to Quay.io/${{ matrix.registry_namespace }} namespace
+      - name: Push image to Quay.io/centos7 namespace
         if: ${{ steps.check_exclude_file.outputs.files_exists == 'false' && matrix.registry_namespace == 'centos7' }}
         id: push-to-quay-centos7
         uses: redhat-actions/push-to-registry@v2.2
@@ -99,7 +98,7 @@ jobs:
           username: ${{ secrets.QUAY_IMAGE_BUILDER_USERNAME }}
           password: ${{ secrets.QUAY_IMAGE_BUILDER_TOKEN }}
 
-      - name: Push image to Quay.io/${{ matrix.registry_namespace }} namespace
+      - name: Push image to Quay.io/sclorg namespace
         if: ${{ steps.check_exclude_file.outputs.files_exists == 'false' && matrix.registry_namespace != 'centos7' }}
         id: push-to-quay-sclorg
         uses: redhat-actions/push-to-registry@v2.2
