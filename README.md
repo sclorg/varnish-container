@@ -46,13 +46,13 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     ```
 * **CentOS based image**
 
-    This image is available on DockerHub. To download it run:
+    This image is available on Quay.io. To download it run:
 
     ```
     $ podman pull quay.io/centos7/varnish-6-centos7
     ```
 
-    To build a Varnish image from scratch run:
+    To build a CentOS Varnish image from scratch run:
 
     ```
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
