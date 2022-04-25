@@ -212,7 +212,7 @@ function run_all_tests() {
     info "Running test $test_case ... "
     TESTCASE_RESULT=0
     $test_case
-    $check_result $?
+    check_result $?
     local test_msg
     if [ $TESTCASE_RESULT -eq 0 ]; then
       test_msg="[PASSED]"
