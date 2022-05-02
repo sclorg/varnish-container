@@ -1,10 +1,12 @@
 Varnish HTTP accelerator container images
 =========================================
 
+[![Build and push images to Quay.io registry](https://github.com/sclorg/varnish-container/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/sclorg/varnish-container/actions/workflows/build-and-push.yml)
+
 Varnish 6 status:[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-6-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-6-centos7)
 
 This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
-Users can choose between RHEL, CentOS, CentOS Stream 9 and Fedora based images.
+Users can choose between RHEL, CentOS, CentOS Stream 8, CentOS Stream 9 and Fedora based images.
 
 
 Versions
@@ -16,6 +18,9 @@ RHEL versions currently supported are:
 * RHEL7
 * RHEL8
 
+CentOS versions currently supported are:
+* CentOS Stream 8
+* CentOS Stream 9
 
 For more information about contributing, see
 [the Contribution Guidelines](https://github.com/sclorg/welcome/blob/master/contribution.md).
