@@ -6,7 +6,8 @@ Varnish Cache {{ spec.version }}.0 HTTP reverse proxy Container image
 This container image includes Varnish {{ spec.version }}.0 Cache server and a reverse proxy for OpenShift and general usage.
 Users can choose between RHEL, CentOS and Fedora based images.
 The RHEL images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/),
-the CentOS images are available on [Quay.io](https://quay.io/organization/centos7),
+the CentOS images are available on [Quay.io/centos7](https://quay.io/organization/centos7),
+the CentOS Stream images are available on [Quay.io/sclorg](https://quay.io/organization/centos7),
 and the Fedora images are available in [Fedora Registry](https://registry.fedoraproject.org/).
 The resulting image can be run using [podman](https://github.com/containers/libpod).
 
@@ -75,4 +76,6 @@ Dockerfile and other sources for this container image are available on
 https://github.com/sclorg/varnish-container.
 In that repository you also can find another versions of Python environment Dockerfiles.
 Dockerfile for CentOS is called `Dockerfile`, Dockerfile for RHEL7 is called `Dockerfile.rhel7`,
-for RHEL8 it's `Dockerfile.rhel8` and the Fedora Dockerfile is called Dockerfile.fedora.
+for RHEL8 it's `Dockerfile.rhel8`, Dockerfile for CentOS Stream 8 is called `Dockerfile.c8s`,
+Dockerfile for CentOS Stream 9 is called `Dockerfile.c9s`
+and the Fedora Dockerfile is called Dockerfile.fedora.

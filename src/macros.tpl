@@ -20,6 +20,9 @@
       com.redhat.component="varnish-{{ spec.version }}-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
       version="1" \
+  {%- elif (spec.prod == "c8s" ) %}
+      io.openshift.tags="builder,varnish{{ spec.version }},varnish-{{ spec.version }}" \
+      version="1" \
   {%- else  %}
       io.openshift.tags="builder,varnish,rh-varnish{{ spec.version }}" \
       com.redhat.component="rh-varnish{{ spec.version }}-container" \
