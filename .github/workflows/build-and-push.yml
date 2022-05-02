@@ -18,6 +18,7 @@ jobs:
             dockerfile: "Dockerfile"
             registry_namespace: "centos7"
             tag: "centos7"
+            suffix: "centos7"
             quayio_username: "QUAY_IMAGE_BUILDER_USERNAME"
             quayio_token: "QUAY_IMAGE_BUILDER_TOKEN"
           - dockerfile_path: "6"
