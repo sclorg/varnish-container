@@ -1,4 +1,4 @@
-FROM quay.io/sclorg/s2i-core-c9s:c9s
+FROM quay.io/sclorg/s2i-core-c8s:c8s
 EXPOSE 8080
 EXPOSE 8443
 
@@ -20,11 +20,12 @@ LABEL summary="$SUMMARY" \
       com.redhat.component="rh-varnish6-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
       version="6" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ sclorg/varnish-6-c9s sample-server" \
-      name="sclorg/varnish-6-c9s" \
+      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ sclorg/varnish-6-c8s sample-server" \
+      name="sclorg/varnish-6-c8s" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
 RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish gcc" && \
+    yum -y module enable varnish:6  && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     fix-permissions $VARNISH_CONFIGURATION_PATH && \

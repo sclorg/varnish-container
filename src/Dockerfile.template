@@ -31,7 +31,7 @@ RUN {{ macros.populate_install_pkgs(spec) }}
     {% endif %}
     {{ commands.pkginstaller.install([], {'docs': False}) }} $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    {% if config.os.id == "fedora" or spec.prod == "rhel8" or spec.prod == "c8s" %}
+    {% if config.os.id == "fedora" or spec.prod == "rhel8" or spec.prod == "c8s" or spec.prod == "c9s" %}
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
     {% endif %}
@@ -45,7 +45,7 @@ COPY {{ spec.version }}/s2i/bin/ $STI_SCRIPTS_PATH
 # Copy extra files to the image.
 COPY {{ spec.version }}/root/ /
 
-{% if config.os.id != "fedora" and spec.prod != "rhel8" and spec.prod != "c8s" %}
+{% if config.os.id != "fedora" and spec.prod != "rhel8" and spec.prod != "c8s" and spec.prod != "c9s" %}
 # In order to drop the root user, we have to make some directories world
 # writeable as OpenShift default security model is to run the container under
 # random UID.
@@ -64,7 +64,7 @@ RUN rpm-file-permissions
 
 USER 1001
 
-{% if config.os.id != "fedora" and spec.prod != "rhel8" and spec.prod != "c8s" %}
+{% if config.os.id != "fedora" and spec.prod != "rhel8" and spec.prod != "c8s" and spec.prod != "c9s" %}
 # VOLUME ["{{ spec.etc_path }}/varnish"]
 
 ENV BASH_ENV=${APP_ROOT}/etc/scl_enable \
