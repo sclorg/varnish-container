@@ -45,6 +45,31 @@ specs:
       repo_setup: yum -y module enable varnish:6  && \
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       etc_path: /etc
+    c9s:
+      distros:
+        - centos-stream-9-x86_64
+      el_version: "9"
+      s2i_base: quay.io/sclorg/s2i-core-c9s
+      img_tag: "c9s"
+      org: "sclorg"
+      from_tag: "c9s"
+      prod: "c9s"
+      install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
+      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      etc_path: /etc
+    c8s:
+      distros:
+        - centos-stream-8-x86_64
+      el_version: "8"
+      s2i_base: quay.io/sclorg/s2i-core-c8s
+      from_tag: "c8s"
+      img_tag: "c8s"
+      org: "sclorg"
+      prod: "c8s"
+      install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
+      repo_setup: yum -y module enable varnish:6  && \
+      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      etc_path: /etc
 
   version:
     "6":
