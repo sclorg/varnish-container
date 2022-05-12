@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/f34/s2i-core:latest
+FROM quay.io/fedora/s2i-core:35
 EXPOSE 8080
 EXPOSE 8443
 
@@ -20,8 +20,8 @@ LABEL summary="$SUMMARY" \
       io.openshift.tags="builder,varnish" \
       version="$VERSION" \
       com.redhat.component="varnish" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ $FGC/varnish sample-server" \
-      name="$FGC/varnish" \
+      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ quay.io/fedora/varnish-6 sample-server" \
+      name="fedora/varnish-6" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
 RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish" && \

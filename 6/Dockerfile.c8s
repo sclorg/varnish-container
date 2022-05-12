@@ -20,7 +20,7 @@ LABEL summary="$SUMMARY" \
       com.redhat.component="rh-varnish6-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
       version="6" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ sclorg/varnish-6-c8s sample-server" \
+      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/  sample-server" \
       name="sclorg/varnish-6-c8s" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 

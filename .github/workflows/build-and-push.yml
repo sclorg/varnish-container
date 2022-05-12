@@ -35,6 +35,12 @@ jobs:
             suffix: "c8s"
             quayio_username: "QUAY_IMAGE_SCLORG_BUILDER_USERNAME"
             quayio_token: "QUAY_IMAGE_SCLORG_BUILDER_TOKEN"
+          - dockerfile_path: "6"
+            dockerfile: "Dockerfile.fedora"
+            registry_namespace: "fedora"
+            tag: "6"
+            quayio_username: "QUAY_IMAGE_FEDORA_BUILDER_USERNAME"
+            quayio_token: "QUAY_IMAGE_FEDORA_BUILDER_TOKEN"
 
     steps:
       - name: Build and push to quay.io registry

@@ -5,9 +5,10 @@ specs:
     fedora:
       distros:
         - fedora-34-x86_64
-      s2i_base: registry.fedoraproject.org/f34/s2i-core:latest
+      s2i_base: quay.io/fedora/s2i-core:35
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
-      img_name: "$FGC/varnish"
+      img_name: "fedora/varnish-6"
+      full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
     centos:
       distros:
@@ -17,6 +18,7 @@ specs:
       org: "centos7"
       prod: "centos7"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      full_img_name: "quay.io/{{ spec.img_name }}"
       repo_setup: yum install -y centos-release-scl-rh && \
       staging_repo_setup: >-4
           yum-config-manager --add-repo https://cbs.centos.org/repos/sclo7-rh-varnish{{ spec.version }}-rh-candidate/x86_64/os/ && \
@@ -32,6 +34,7 @@ specs:
       org: "rhscl"
       prod: "rhel7"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      full_img_name: "{{ spec.img_name }}"
       repo_setup: prepare-yum-repositories rhel-server-rhscl-7-rpms && \
       etc_path: /etc/opt/rh/rh-varnish{{ spec.version }}
       var_path: /var/opt/rh/rh-varnish{{ spec.version }}
@@ -44,6 +47,7 @@ specs:
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
       repo_setup: yum -y module enable varnish:6  && \
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
+      full_img_name: "{{ spec.img_name }}"
       etc_path: /etc
     c9s:
       distros:
