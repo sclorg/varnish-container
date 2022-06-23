@@ -49,6 +49,16 @@ specs:
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       full_img_name: "{{ spec.img_name }}"
       etc_path: /etc
+    rhel9:
+      distros:
+        - rhel-9-x86_64
+      s2i_base: ubi9/s2i-core
+      from_tag: "1"
+      prod: "rhel9"
+      install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
+      img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
+      full_img_name: "{{ spec.img_name }}"
+      etc_path: /etc
     c9s:
       distros:
         - centos-stream-9-x86_64
