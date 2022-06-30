@@ -53,8 +53,7 @@ function test_response_redirect_internal() {
 }
 
 function test_varnish_integration() {
-  local image_name=$1
-  ct_os_test_s2i_app_func "${image_name}" \
+  ct_os_test_s2i_app_func "${IMAGE_NAME}" \
                           "https://github.com/sclorg/varnish-container.git" \
                           "test/test-app" \
                           "test_response_redirect_internal 'http://<IP>:8080' '301' 'oldexample.com' 'http://example.org'"
