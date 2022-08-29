@@ -14,9 +14,6 @@ image_dir=$(readlink -f ${test_dir}/..)
 
 . "$test_dir/test-lib.sh"
 
-test_short_summary=''
-TESTSUITE_RESULT=0
-
 TEST_LIST="\
 test_s2i_usage
 test_docker_run_usage
@@ -76,23 +73,6 @@ cleanup_test_app() {
     fi
     rm $cid_file
   fi
-}
-
-cleanup() {
-  info "Cleaning up the test application image"
-  if image_exists ${IMAGE_NAME}-testapp; then
-    docker rmi -f ${IMAGE_NAME}-testapp
-  fi
-  rm -rf ${test_dir}/test-app/.git
-
-  echo "$test_short_summary"
-
-  if [ $TESTSUITE_RESULT -eq 0 ] ; then
-    echo "Tests for ${IMAGE_NAME} succeeded."
-  else
-    echo "Tests for ${IMAGE_NAME} failed."
-  fi
-  exit $TESTSUITE_RESULT
 }
 
 check_result() {
@@ -197,6 +177,16 @@ test_application_with_user() {
   CONTAINER_ARGS="--user 12345" test_application
   check_result $?
 }
+
+function _cleanup() {
+  # this is temporary, and should be embedded in proper way
+  # into ct_cleanup function in test-lib.sh
+  info "Cleaning up the test application image"
+  if image_exists ${IMAGE_NAME}-testapp; then
+    docker rmi -f ${IMAGE_NAME}-testapp
+  fi
+}
+
 cid_file=$(mktemp -u --suffix=.cid)
 
 # Since we built the candidate image locally, we don't want S2I attempt to pull
@@ -207,29 +197,8 @@ prepare
 run_s2i_build
 check_result $?
 
-function run_all_tests() {
-  for test_case in $TEST_SET; do
-    info "Running test $test_case ... "
-    TESTCASE_RESULT=0
-    $test_case
-    check_result $?
-    local test_msg
-    if [ $TESTCASE_RESULT -eq 0 ]; then
-      test_msg="[PASSED]"
-    else
-      test_msg="[FAILED]"
-      TESTSUITE_RESULT=1
-    fi
-    printf -v test_short_summary "%s %s for %s\n" "${test_short_summary}" "${test_msg}" "$test_case"
-    [ -n "${FAIL_QUICKLY:-}" ] && {
-      cleanup
-      return 1
-    }
-  done;
-}
-
-TEST_SET=${TESTS:-$TEST_LIST} run_all_tests
-
-cleanup
-
-info "All tests finished successfully."
+# temporary ct_enable_cleanup should be used instead, see _cleanup()
+# and https://github.com/sclorg/container-common-scripts/issues/285
+trap '_cleanup;ct_cleanup' EXIT SIGINT
+TEST_SUMMARY=''
+TEST_SET=${TESTS:-$TEST_LIST} ct_run_tests_from_testset
