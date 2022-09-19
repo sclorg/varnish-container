@@ -16,10 +16,10 @@ LABEL summary="$SUMMARY" \
       io.k8s.description="$DESCRIPTION" \
       io.k8s.display-name="Varnish 6" \
       io.openshift.expose-services="8080:http,8443:https" \
-      io.openshift.tags="builder,varnish,rh-varnish6" \
-      com.redhat.component="rh-varnish6-container" \
+      io.openshift.tags="builder,varnish6,varnish-6" \
+      com.redhat.component="varnish-6-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
-      version="6" \
+      version="1" \
       usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/  sample-server" \
       name="sclorg/varnish-6-c8s" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
