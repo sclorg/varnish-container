@@ -64,7 +64,7 @@ function test_varnish_imagestream() {
   local image_stream_file
   local local_image_stream_file
   case ${OS} in
-    rhel7|centos7) ;;
+    rhel7|centos7|rhel8) ;;
     *) echo "Imagestream testing not supported for $OS environment." ; return 0 ;;
   esac
 
