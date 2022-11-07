@@ -187,6 +187,8 @@ function _cleanup() {
   fi
 }
 
+set -u
+
 cid_file=$(mktemp -u --suffix=.cid)
 
 # Since we built the candidate image locally, we don't want S2I attempt to pull
