@@ -104,7 +104,8 @@ test_s2i_usage() {
 
 test_docker_run_usage() {
   info "Testing 'docker run' usage"
-  docker run ${IMAGE_NAME} &>/dev/null
+  local cid_file=$(mktemp -u --suffix=.cid --tmpdir="$CID_FILE_DIR")
+  docker run --cidfile="$cid_file" ${IMAGE_NAME} &>/dev/null
 }
 
 test_scl_usage() {
@@ -178,18 +179,10 @@ test_application_with_user() {
   check_result $?
 }
 
-function _cleanup() {
-  # this is temporary, and should be embedded in proper way
-  # into ct_cleanup function in test-lib.sh
-  info "Cleaning up the test application image"
-  if image_exists ${IMAGE_NAME}-testapp; then
-    docker rmi -f ${IMAGE_NAME}-testapp
-  fi
-}
-
 set -u
 
-cid_file=$(mktemp -u --suffix=.cid)
+ct_init
+cid_file=$(mktemp -u --suffix=.cid --tmpdir="$CID_FILE_DIR")
 
 # Since we built the candidate image locally, we don't want S2I attempt to pull
 # it from Docker hub
@@ -199,8 +192,4 @@ prepare
 run_s2i_build
 check_result $?
 
-# temporary ct_enable_cleanup should be used instead, see _cleanup()
-# and https://github.com/sclorg/container-common-scripts/issues/285
-trap '_cleanup;ct_cleanup' EXIT SIGINT
-TEST_SUMMARY=''
 TEST_SET=${TESTS:-$TEST_LIST} ct_run_tests_from_testset
