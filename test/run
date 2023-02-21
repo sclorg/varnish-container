@@ -71,7 +71,7 @@ cleanup_test_app() {
       docker stop $(cat $cid_file)
       docker rm $(cat $cid_file)
     fi
-    rm $cid_file
+    rm -f $cid_file
   fi
 }
 
