@@ -18,6 +18,9 @@ elif [ "${VERSION}" == "varnish-5" ]; then
 elif [ "${VERSION}" == "varnish-6" ]; then
   PORT_EXPOSE="-a :8080 -a :8443"
   USER_GROUP='-j unix,user=default,ccgroup=root'
+elif [ "${VERSION}" == "varnish-7" ]; then
+  PORT_EXPOSE="-a :8080 -a :8443"
+  USER_GROUP='-j unix,user=default,ccgroup=root'
 else
   echo "Unsupported version of varnishd: ${VERSION}"
   exit 3
