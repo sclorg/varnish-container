@@ -7,7 +7,7 @@ if [ ${PLATFORM} == "el7" ]; then
 elif [ ${PLATFORM} == "el8" ]; then
     IMAGE=$DISTRO/varnish-6
 else
-    IMAGE=${FGC}/varnish
+    IMAGE=${FGC}/varnish-{{ spec.version }}
 fi
 
 cat <<EOF
