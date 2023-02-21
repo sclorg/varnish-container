@@ -4,10 +4,10 @@ specs:
   distroinfo:
     fedora:
       distros:
-        - fedora-34-x86_64
-      s2i_base: quay.io/fedora/s2i-core:35
+        - fedora-37-x86_64
+      s2i_base: quay.io/fedora/s2i-core:37
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
-      img_name: "fedora/varnish-6"
+      img_name: "fedora/varnish-7"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
     centos:
@@ -87,4 +87,20 @@ specs:
 
   version:
     "6":
+      version: "6"
+    "7":
+      version: "7"
+
+matrix:
+  exclude:
+    - distros:
+        - centos-7-x86_64
+        - rhel-7-x86_64
+        - rhel-8-x86_64
+        - rhel-9-x86_64
+        - centos-stream-8-x86_64
+        - centos-stream-9-x86_64
+      version: "7"
+    - distros:
+        - fedora-37-x86_64
       version: "6"
