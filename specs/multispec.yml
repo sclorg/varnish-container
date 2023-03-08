@@ -92,7 +92,7 @@ specs:
       version: "7"
 
 matrix:
-  exclude:
+  include:
     - distros:
         - centos-7-x86_64
         - rhel-7-x86_64
@@ -100,7 +100,7 @@ matrix:
         - rhel-9-x86_64
         - centos-stream-8-x86_64
         - centos-stream-9-x86_64
-      version: "7"
+      version: "6"
     - distros:
         - fedora-37-x86_64
-      version: "6"
+      version: "7"
