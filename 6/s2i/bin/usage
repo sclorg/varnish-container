@@ -4,10 +4,10 @@ DISTRO=`cat /etc/*-release | grep ^ID= | sed s/ID=// | tr -d '"'`
 IMAGE=centos/varnish-6-$DISTRO
 if [ ${PLATFORM} == "el7" ]; then
     IMAGE=rhscl/varnish-6-$DISTRO
-elif [ ${PLATFORM} == "el8" ]; then
+elif [ ${PLATFORM} == "el8" ] || [ ${PLATFORM} == "el9" ]; then
     IMAGE=$DISTRO/varnish-6
 else
-    IMAGE=${FGC}/varnish
+    IMAGE=${FGC}/varnish-6
 fi
 
 cat <<EOF
