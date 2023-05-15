@@ -7,10 +7,9 @@ Images available on Quay are:
 * CentOS 7 [varnish-6](https://quay.io/repository/centos7/varnish-6-centos7)
 * CentOS Stream 8 [varnish-6](https://quay.io/repository/sclorg/varnish-6-c8s)
 * CentOS Stream 9 [varnish-6](https://quay.io/repository/sclorg/varnish-6-c9s)
-* Fedora [varnish-6](https://quay.io/repository/fedora/varnish-6)
 * Fedora [varnish-7](https://quay.io/repository/fedora/varnish-7)
 
-This repository contains Dockerfiles for Varnish HTTP accelerator images for OpenShift.
+This repository contains Dockerfiles for Varnish HTTP accelerator images.
 Users can choose between RHEL, CentOS, CentOS Stream 8, CentOS Stream 9 and Fedora based images.
 
 
@@ -80,7 +79,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
     $ cd varnish-container
     $ git submodule update --init
-    $ make build TARGET=fedora VERSIONS=6
+    $ make build TARGET=fedora VERSIONS=7
     ```
 
 Note: while the installation steps are calling `podman`, you can replace any such calls by `docker` with the same arguments.
@@ -135,7 +134,7 @@ Users can choose between testing a Varnish test application based on a RHEL or C
     ```
     $ cd varnish-container
     $ git submodule update --init
-    $ make test TARGET=fedora VERSIONS=6
+    $ make test TARGET=fedora VERSIONS=7
     ```
 
 **Notice: By omitting the `VERSIONS` parameter, the build/test action will be performed

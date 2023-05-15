@@ -3,7 +3,7 @@ Varnish Cache {{ spec.version }}.0 HTTP reverse proxy Container image
 
 [![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-{{ spec.version }}-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-{{ spec.version }}-centos7)
 
-This container image includes Varnish {{ spec.version }}.0 Cache server and a reverse proxy for OpenShift and general usage.
+This container image includes Varnish {{ spec.version }}.0 Cache server and general usage.
 Users can choose between RHEL, CentOS and Fedora based images.
 The RHEL images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/),
 the CentOS images are available on [Quay.io/centos7](https://quay.io/organization/centos7),
@@ -28,15 +28,7 @@ The image can be used as a base image for other applications based on Varnish Ca
 Usage
 -----
 
-For this, we will assume that you are using the `rhscl/varnish-{{ spec.version }}-rhel7 image`, available via `varnish:{{ spec.version }}` imagestream tag in Openshift.
-Building a simple [sample-app](https://github.com/sclorg/varnish-container/tree/generated/{{ spec.version }}/test/test-app) application
-in Openshift can be achieved with the following step:
-
-    ```
-    oc new-app varnish:{{ spec.version }}~https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/
-    ```
-
-The same application can also be built using the standalone [S2I](https://github.com/openshift/source-to-image) application on systems that have it available:
+For this, the same application can also be built using the standalone [S2I](https://github.com/openshift/source-to-image) application on systems that have it available:
 
     ```
     $ s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ rhscl/varnish-{{ spec.version }}-rhel7 sample-server
