@@ -94,7 +94,6 @@ specs:
 matrix:
   include:
     - distros:
-        - centos-7-x86_64
         - rhel-7-x86_64
         - rhel-8-x86_64
         - rhel-9-x86_64
