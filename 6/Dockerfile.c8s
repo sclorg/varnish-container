@@ -9,7 +9,8 @@ Varnish Cache stores web pages in memory so web servers don't have to create \
 the same web page over and over again. Varnish Cache serves pages much faster \
 than any application server; giving the website a significant speed up." \
     VARNISH_VCL=/etc/varnish/default.vcl \
-    VARNISH_CONFIGURATION_PATH=/etc/varnish
+    VARNISH_CONFIGURATION_PATH=/etc/varnish \
+    VARNISH_VERSION=6
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
@@ -30,6 +31,7 @@ RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish gcc" && \
     rpm -V $INSTALL_PKGS && \
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
+    varnishd -V 2>&1 | grep -qe "varnish-$VARNISH_VERSION\." && echo "Found VERSION $VARNISH_VERSION" && \
     rm -f /etc/profile.d/lang.sh && \
     rm -f /etc/profile.d/lang.csh && \
     yum -y clean all --enablerepo='*'
