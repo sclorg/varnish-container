@@ -10,7 +10,8 @@ running Varnish server or building Varnish-based application. \
 Varnish Cache stores web pages in memory so web servers don't have to create \
 the same web page over and over again. Varnish Cache serves pages much faster \
 than any application server; giving the website a significant speed up." \
-{{ macros.env(config, spec) }}
+{{ macros.env(config, spec) }} \
+    VARNISH_VERSION={{ spec.version }}
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
@@ -34,6 +35,10 @@ RUN {{ macros.populate_install_pkgs(spec) }}
     {% if config.os.id == "fedora" or spec.prod == "rhel8" or spec.prod == "rhel9" or spec.prod == "c8s" or spec.prod == "c9s" %}
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
+    varnishd -V 2>&1 | grep -qe "varnish-$VARNISH_VERSION\." && echo "Found VERSION $VARNISH_VERSION" && \
+    {% endif %}
+    {% if spec.prod == "rhel7" %}
+    scl enable rh-varnish$VARNISH_VERSION -- varnishd -V 2>&1 | grep -qe "varnish-$VARNISH_VERSION\." && echo "Found VERSION $VARNISH_VERSION" && \
     {% endif %}
     rm -f /etc/profile.d/lang.sh && \
     rm -f /etc/profile.d/lang.csh && \
