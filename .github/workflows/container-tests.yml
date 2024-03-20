@@ -48,9 +48,12 @@ jobs:
             exit 1
           fi
   container-tests:
+    name: "Container tests: ${{ matrix.version }} - ${{ matrix.os_test }}"
     needs: distgen-check
     runs-on: ubuntu-20.04
-    name: "Container tests: ${{ matrix.version }} - ${{ matrix.os_test }}"
+    concurrency:
+      group: container-${{ github.event.issue.number }}-${{ matrix.version }}-${{ matrix.os_test }}
+      cancel-in-progress: true
     strategy:
       fail-fast: false
       matrix:
