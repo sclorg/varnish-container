@@ -2,9 +2,11 @@
 
 set -e
 
-echo "---> Copying varnish configuration files..."
+shopt -s dotglob
+echo "---> Installing application source..."
 rm -rf "${VARNISH_CONFIGURATION_PATH}/default.vcl"
-cp -Rfv /tmp/src/. "${VARNISH_CONFIGURATION_PATH}"
+rm -fR /tmp/src/.git
+mv /tmp/src/* "${VARNISH_CONFIGURATION_PATH}"
 
 # Fix source directory permissions
 fix-permissions ./
