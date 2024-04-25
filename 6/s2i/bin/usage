@@ -19,5 +19,5 @@ Sample invocation:
 s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ ${IMAGE} varnish-sample-app
 
 You can then run the resulting image via:
-docker run -p 8080:8080 varnish-sample-app
+podman run -p 8080:8080 varnish-sample-app
 EOF
