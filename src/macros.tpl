@@ -15,7 +15,7 @@
       io.openshift.tags="builder,varnish" \
       version="$VERSION" \
       com.redhat.component="varnish" \
-  {%- elif spec.prod in ["rhel8", "rhel9", "c9s", "c8s"] %}
+  {%- elif spec.prod in ["rhel8", "rhel9", "c9s" ] %}
       io.openshift.tags="builder,varnish{{ spec.version }},varnish-{{ spec.version }}" \
       com.redhat.component="varnish-{{ spec.version }}-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \

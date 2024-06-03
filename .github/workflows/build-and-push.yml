@@ -20,12 +20,7 @@ jobs:
             image_name: "varnish-6-c9s"
             quayio_username: "QUAY_IMAGE_SCLORG_BUILDER_USERNAME"
             quayio_token: "QUAY_IMAGE_SCLORG_BUILDER_TOKEN"
-          - dockerfile: "6/Dockerfile.c8s"
-            registry_namespace: "sclorg"
-            tag: "c8s"
-            image_name: "varnish-6-c8s"
-            quayio_username: "QUAY_IMAGE_SCLORG_BUILDER_USERNAME"
-            quayio_token: "QUAY_IMAGE_SCLORG_BUILDER_TOKEN"
+
           - dockerfile: "7/Dockerfile.fedora"
             registry_namespace: "fedora"
             tag: "7"
