@@ -15,6 +15,7 @@ jobs:
       matrix:
         include:
           - dockerfile: "6/Dockerfile.c9s"
+            docker_context: 6
             registry_namespace: "sclorg"
             tag: "c9s"
             image_name: "varnish-6-c9s"
@@ -22,6 +23,7 @@ jobs:
             quayio_token: "QUAY_IMAGE_SCLORG_BUILDER_TOKEN"
 
           - dockerfile: "7/Dockerfile.fedora"
+            docker_context: 7
             registry_namespace: "fedora"
             tag: "7"
             image_name: "varnish-7"
@@ -39,3 +41,5 @@ jobs:
           dockerfile: ${{ matrix.dockerfile }}
           tag: ${{ matrix.tag }}
           image_name: ${{ matrix.image_name }}
+          readme: "${{ matrix.docker_context }}/README.md"
+          quay_application_token: ${{ secrets.QUAY_IMAGE_SCLORG_UPDATE_DESC }}
