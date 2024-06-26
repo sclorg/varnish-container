@@ -4,8 +4,6 @@ Varnish HTTP accelerator container images
 [![Build and push images to Quay.io registry](https://github.com/sclorg/varnish-container/actions/workflows/build-and-push.yml/badge.svg)](https://github.com/sclorg/varnish-container/actions/workflows/build-and-push.yml)
 
 Images available on Quay are:
-* CentOS 7 [varnish-6](https://quay.io/repository/centos7/varnish-6-centos7)
-* CentOS Stream 8 [varnish-6](https://quay.io/repository/sclorg/varnish-6-c8s)
 * CentOS Stream 9 [varnish-6](https://quay.io/repository/sclorg/varnish-6-c9s)
 * Fedora [varnish-7](https://quay.io/repository/fedora/varnish-7)
 
@@ -20,12 +18,10 @@ Varnish versions currently provided are:
 * [varnish-7](./7)
 
 RHEL versions currently supported are:
-* RHEL7
 * RHEL8
 * RHEL9
 
 CentOS versions currently supported are:
-* CentOS Stream 8
 * CentOS Stream 9
 
 For more information about contributing, see
@@ -55,12 +51,12 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     $ git submodule update --init
     $ make build TARGET=rhel8 VERSIONS=6
     ```
-* **CentOS based image**
+* **CentOS Stream based image**
 
     This image is available on Quay.io. To download it run:
 
     ```
-    $ podman pull quay.io/centos7/varnish-6-centos7
+    $ podman pull quay.io/sclorg/varnish-6-c9s
     ```
 
     To build a CentOS Varnish image from scratch run:
@@ -69,7 +65,7 @@ To build a Varnish image, choose either the CentOS or RHEL based image:
     $ git clone --recursive https://github.com/sclorg/varnish-container.git
     $ cd varnish-container
     $ git submodule update --init
-    $ make build TARGET=centos7 VERSIONS=6
+    $ make build TARGET=c9s VERSIONS=6
 
 * **Fedora based image**
 
@@ -121,12 +117,12 @@ Users can choose between testing a Varnish test application based on a RHEL or C
     $ make test TARGET=rhel8 VERSIONS=6
     ```
 
-* **CentOS based image**
+* **CentOS Stream based image**
 
    ```
     $ cd varnish-container
     $ git submodule update --init
-    $ make test TARGET=centos7 VERSIONS=6
+    $ make test TARGET=c9s VERSIONS=6
     ```
 
 * **Fedora based image**
