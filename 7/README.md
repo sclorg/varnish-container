@@ -1,13 +1,12 @@
 Varnish Cache 7.0 HTTP reverse proxy Container image
 =====================================================
 
-[![Docker Repository on Quay](https://quay.io/repository/centos7/varnish-7-centos7/status "Docker Repository on Quay")](https://quay.io/repository/centos7/varnish-7-centos7)
+[![Docker Repository on Quay](https://quay.io/repository/sclorg/varnish-7-c9s/status "Docker Repository on Quay")](https://quay.io/repository/sclorg/varnish-7-c9s)
 
 This container image includes Varnish 7.0 Cache server and general usage.
 Users can choose between RHEL, CentOS and Fedora based images.
 The RHEL images are available in the [Red Hat Container Catalog](https://access.redhat.com/containers/),
-the CentOS images are available on [Quay.io/centos7](https://quay.io/organization/centos7),
-the CentOS Stream images are available on [Quay.io/sclorg](https://quay.io/organization/centos7),
+the CentOS Stream images are available on [Quay.io/sclorg](https://quay.io/organization/sclorg),
 and the Fedora images are available in [Quay.io/fedora](https://quay.io/organization/fedora).
 The resulting image can be run using [podman](https://github.com/containers/libpod).
 
@@ -31,7 +30,7 @@ Usage
 For this, the same application can also be built using the standalone [S2I](https://github.com/openshift/source-to-image) application on systems that have it available:
 
     ```
-    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=7/test/test-app/ rhscl/varnish-7-rhel7 sample-server
+    $ s2i build https://github.com/sclorg/varnish-container.git --context-dir=7/test/test-app/ rhel8/varnish-7 sample-server
     ```
 
 **Accessing the application:**
@@ -67,7 +66,6 @@ See also
 Dockerfile and other sources for this container image are available on
 https://github.com/sclorg/varnish-container.
 In that repository you also can find another versions of Python environment Dockerfiles.
-Dockerfile for CentOS is called `Dockerfile`, Dockerfile for RHEL7 is called `Dockerfile.rhel7`,
-for RHEL8 it's `Dockerfile.rhel8`, for RHEL9 it's `Dockerfile.rhel9`,
+Dockerfile for RHEL8 it's `Dockerfile.rhel8`, for RHEL9 it's `Dockerfile.rhel9`,
 Dockerfile for CentOS Stream 9 is called `Dockerfile.c9s`
 and the Fedora Dockerfile is called Dockerfile.fedora.
