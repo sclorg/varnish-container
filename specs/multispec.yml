@@ -10,34 +10,6 @@ specs:
       img_name: "fedora/varnish-7"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
-    centos:
-      distros:
-        - centos-7-x86_64
-      s2i_base: quay.io/centos7/s2i-core-centos7
-      install_pkgs: "gettext hostname nss_wrapper bind-utils rh-varnish{{ spec.version }}-varnish gcc"
-      org: "centos7"
-      prod: "centos7"
-      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
-      full_img_name: "quay.io/{{ spec.img_name }}"
-      repo_setup: yum install -y centos-release-scl-rh && \
-      staging_repo_setup: >-4
-          yum-config-manager --add-repo https://cbs.centos.org/repos/sclo7-rh-varnish{{ spec.version }}-rh-candidate/x86_64/os/ && \
-              echo gpgcheck=0 >> /etc/yum.repos.d/cbs.centos.org_repos_sclo7-rh-varnish{{ spec.version }}-rh-candidate_x86_64_os_.repo && \
-      etc_path: /etc/opt/rh/rh-varnish{{ spec.version }}
-      var_path: /var/opt/rh/rh-varnish{{ spec.version }}
-    rhel7:
-      distros:
-        - rhel-7-x86_64
-      s2i_base: rhscl/s2i-core-rhel7
-      from_tag: "1"
-      install_pkgs: "gettext hostname nss_wrapper bind-utils rh-varnish{{ spec.version }}-varnish gcc"
-      org: "rhscl"
-      prod: "rhel7"
-      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
-      full_img_name: "{{ spec.img_name }}"
-      repo_setup: prepare-yum-repositories rhel-server-rhscl-7-rpms && \
-      etc_path: /etc/opt/rh/rh-varnish{{ spec.version }}
-      var_path: /var/opt/rh/rh-varnish{{ spec.version }}
     rhel8:
       distros:
         - rhel-8-x86_64
@@ -81,7 +53,6 @@ specs:
 matrix:
   include:
     - distros:
-        - rhel-7-x86_64
         - rhel-8-x86_64
         - rhel-9-x86_64
         - centos-stream-9-x86_64
