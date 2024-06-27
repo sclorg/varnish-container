@@ -63,10 +63,6 @@ function test_varnish_integration() {
 function test_varnish_imagestream() {
   local image_stream_file
   local local_image_stream_file
-  case ${OS} in
-    rhel7|centos7|rhel8|rhel9) ;;
-    *) echo "Imagestream testing not supported for $OS environment." ; return 0 ;;
-  esac
 
   image_stream_file="${THISDIR}/imagestreams/varnish-${OS%[0-9]*}.json"
   echo "Running image stream test for stream ${image_stream_file} and test application"
