@@ -5,6 +5,7 @@ Varnish HTTP accelerator container images
 
 Images available on Quay are:
 * CentOS Stream 9 [varnish-6](https://quay.io/repository/sclorg/varnish-6-c9s)
+* CentOS Stream 10 [varnish-6](https://quay.io/repository/sclorg/varnish-7-c10s)
 * Fedora [varnish-7](https://quay.io/repository/fedora/varnish-7)
 
 This repository contains Dockerfiles for Varnish HTTP accelerator images.
@@ -23,6 +24,7 @@ RHEL versions currently supported are:
 
 CentOS versions currently supported are:
 * CentOS Stream 9
+* CentOS Stream 10
 
 For more information about contributing, see
 [the Contribution Guidelines](https://github.com/sclorg/welcome/blob/master/contribution.md).
@@ -32,7 +34,7 @@ For more information about concepts used in these container images, see the
 
 Installation
 ---------------
-To build a Varnish image, choose either the CentOS or RHEL based image:
+To build a Varnish image, choose either the CentOS Stream or RHEL based image:
 * **RHEL based image**
 
     These images are available in the [Red Hat Container Catalog](https://catalog.redhat.com/software/containers/rhel8/varnish-6/5ba0ae68bed8bd6ee8198613?container-tabs=overview).

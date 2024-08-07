@@ -35,6 +35,9 @@ DISTGEN_MULTI_RULES:
     dest: Dockerfile.c9s
 
   - src: src/Dockerfile.template
+    dest: Dockerfile.c10s
+
+  - src: src/Dockerfile.template
     dest: Dockerfile.fedora
 
 # Files to copy
