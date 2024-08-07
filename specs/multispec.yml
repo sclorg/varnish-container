@@ -43,7 +43,18 @@ specs:
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
       etc_path: /etc
-
+    c10s:
+      distros:
+        - centos-stream-10-x86_64
+      el_version: "10"
+      s2i_base: quay.io/sclorg/s2i-core-c10s
+      img_tag: "c10s"
+      org: "sclorg"
+      from_tag: "c10s"
+      prod: "c10s"
+      install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
+      img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      etc_path: /etc
   version:
     "6":
       version: "6"
@@ -59,4 +70,5 @@ matrix:
       version: "6"
     - distros:
         - fedora-38-x86_64
+        - centos-stream-10-xc86_64
       version: "7"
