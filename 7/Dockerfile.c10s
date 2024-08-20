@@ -1,4 +1,4 @@
-FROM quay.io/sclorg/s2i-core-c9s:c9s
+FROM quay.io/sclorg/s2i-core-c10s:c10s
 EXPOSE 8080
 EXPOSE 8443
 
@@ -10,19 +10,19 @@ the same web page over and over again. Varnish Cache serves pages much faster \
 than any application server; giving the website a significant speed up." \
     VARNISH_VCL=/etc/varnish/default.vcl \
     VARNISH_CONFIGURATION_PATH=/etc/varnish \
-    VARNISH_VERSION=6
+    VARNISH_VERSION=7
 
 LABEL summary="$SUMMARY" \
       description="$DESCRIPTION" \
       io.k8s.description="$DESCRIPTION" \
-      io.k8s.display-name="Varnish 6" \
+      io.k8s.display-name="Varnish 7" \
       io.openshift.expose-services="8080:http,8443:https" \
-      io.openshift.tags="builder,varnish6,varnish-6" \
-      com.redhat.component="varnish-6-container" \
+      io.openshift.tags="builder,varnish7,varnish-7" \
+      com.redhat.component="varnish-7-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
       version="1" \
-      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=6/test/test-app/ quay.io/sclorg/varnish-6-c9s sample-server" \
-      name="sclorg/varnish-6-c9s" \
+      usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=7/test/test-app/ quay.io/sclorg/varnish-7-c10s sample-server" \
+      name="sclorg/varnish-7-c10s" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
 RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish gcc" && \
@@ -36,10 +36,10 @@ RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish gcc" && \
     yum -y clean all --enablerepo='*'
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
-COPY 6/s2i/bin/ $STI_SCRIPTS_PATH
+COPY 7/s2i/bin/ $STI_SCRIPTS_PATH
 
 # Copy extra files to the image.
-COPY 6/root/ /
+COPY 7/root/ /
 
 RUN chmod -R a+rwx ${APP_ROOT}/etc && \
     chown -R 1001:0 ${APP_ROOT}
