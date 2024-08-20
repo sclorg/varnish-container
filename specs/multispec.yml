@@ -4,8 +4,8 @@ specs:
   distroinfo:
     fedora:
       distros:
-        - fedora-38-x86_64
-      s2i_base: quay.io/fedora/s2i-core:38
+        - fedora-39-x86_64
+      s2i_base: quay.io/fedora/s2i-core:39
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish"
       img_name: "fedora/varnish-7"
       full_img_name: "quay.io/{{ spec.img_name }}"
@@ -42,6 +42,7 @@ specs:
       prod: "c9s"
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
     c10s:
       distros:
@@ -54,6 +55,7 @@ specs:
       prod: "c10s"
       install_pkgs: "gettext hostname nss_wrapper bind-utils varnish gcc"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
+      full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
   version:
     "6":
@@ -69,6 +71,6 @@ matrix:
         - centos-stream-9-x86_64
       version: "6"
     - distros:
-        - fedora-38-x86_64
-        - centos-stream-10-xc86_64
+        - fedora-39-x86_64
+        - centos-stream-10-x86_64
       version: "7"
