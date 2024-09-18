@@ -25,7 +25,7 @@ LABEL summary="$SUMMARY" \
       name="fedora/varnish-7" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
-RUN INSTALL_PKGS="gettext hostname nss_wrapper bind-utils varnish" && \
+RUN INSTALL_PKGS="gettext hostname nss_wrapper-libs bind-utils varnish" && \
     dnf -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
