@@ -29,7 +29,7 @@ RUN INSTALL_PKGS="{{ spec.install_pkgs }}" && \
     {% endif %}
     {{ commands.pkginstaller.install([], {'docs': False}) }} $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    {% if config.os.id == "fedora" or spec.prod == "rhel8" or spec.prod == "rhel9" or spec.prod == "c9s" or spec.prod == "c10s" %}
+    {% if config.os.id == "fedora" or spec.prod == "rhel8" or spec.prod == "rhel9" or spec.prod == "rhel10" or spec.prod == "c9s" or spec.prod == "c10s" %}
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
     fix-permissions /var/lib/varnish && \
     varnishd -V 2>&1 | grep -qe "varnish-$VARNISH_VERSION\." && echo "Found VERSION $VARNISH_VERSION" && \
