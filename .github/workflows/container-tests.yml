@@ -5,7 +5,7 @@ on:
 jobs:
   distgen-check:
     name: "Check distgen generated files"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     if: |
       github.event.issue.pull_request
       && (contains(github.event.comment.body, '[test]') || contains(github.event.comment.body, '[test-all]'))
@@ -50,7 +50,7 @@ jobs:
   container-tests:
     name: "Container tests: ${{ matrix.version }} - ${{ matrix.os_test }}"
     needs: distgen-check
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     concurrency:
       group: container-${{ github.event.issue.number }}-${{ matrix.version }}-${{ matrix.os_test }}
       cancel-in-progress: true
@@ -58,7 +58,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [ "6", "7" ]
-        os_test: [ "fedora", "rhel8", "rhel9", "c9s", "c10s" ]
+        os_test: [ "fedora", "rhel8", "rhel9", "rhel10", "c9s", "c10s" ]
         test_case: [ "container" ]
 
     if: |
