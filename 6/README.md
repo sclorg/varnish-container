@@ -66,7 +66,7 @@ See also
 Dockerfile and other sources for this container image are available on
 https://github.com/sclorg/varnish-container.
 In that repository you also can find another versions of Python environment Dockerfiles.
-Dockerfile for RHEL8 it's `Dockerfile.rhel8`, for RHEL9 it's `Dockerfile.rhel9`,
+Dockerfile for RHEL8 it's `Dockerfile.rhel8`, for RHEL9 it's `Dockerfile.rhel9`, for RHEL10 it's `Dockerfile.rhel10`,
 Dockerfile for CentOS Stream 9 is called `Dockerfile.c9s`,
 Dockerfile for CentOS Stream 10 is called `Dockerfile.c10s`
 and the Fedora Dockerfile is called Dockerfile.fedora.
