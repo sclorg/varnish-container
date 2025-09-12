@@ -20,7 +20,6 @@ LABEL summary="$SUMMARY" \
       io.openshift.tags="builder,varnish7,varnish-7" \
       com.redhat.component="varnish-7-container" \
       com.redhat.license_terms="https://www.redhat.com/en/about/red-hat-end-user-license-agreements#rhel" \
-      version="1" \
       usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=7/test/test-app/ rhel10/varnish-7 sample-server" \
       name="rhel10/varnish-7" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
