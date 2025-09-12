@@ -19,7 +19,6 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Varnish 7" \
       io.openshift.expose-services="8080:http,8443:https" \
       io.openshift.tags="builder,varnish" \
-      version="$VERSION" \
       com.redhat.component="varnish" \
       usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir=7/test/test-app/ quay.io/fedora/varnish-7 sample-server" \
       name="fedora/varnish-7" \
