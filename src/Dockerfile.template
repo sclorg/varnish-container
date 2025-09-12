@@ -19,6 +19,11 @@ LABEL summary="$SUMMARY" \
       io.k8s.display-name="Varnish {{ spec.version }}" \
       io.openshift.expose-services="8080:http,8443:https" \
 {{ macros.labels(config, spec) }}
+    {% if spec.org == "sclorg" %}
+      version="1" \
+    {% elif config.os.id == "rhel" and spec.prod != "rhel10" %}
+      version="1" \
+    {% endif %}
       usage="s2i build https://github.com/sclorg/varnish-container.git --context-dir={{ spec.version }}/test/test-app/ {{ spec.full_img_name }} sample-server" \
       name="{{ spec.img_name }}" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"

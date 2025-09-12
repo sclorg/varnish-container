@@ -10,6 +10,7 @@ specs:
       img_name: "fedora/varnish-7"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
+      org: "fedora"
     rhel8:
       distros:
         - rhel-8-x86_64
