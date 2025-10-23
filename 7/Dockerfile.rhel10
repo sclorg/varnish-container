@@ -24,7 +24,7 @@ LABEL summary="$SUMMARY" \
       name="rhel10/varnish-7" \
       maintainer="Uhliarik Lubos <luhliari@redhat.com>"
 
-RUN INSTALL_PKGS="gettext hostname nss_wrapper-libs bind-utils varnish gcc" && \
+RUN INSTALL_PKGS="gettext hostname nss_wrapper-libs varnish gcc" && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     fix-permissions $VARNISH_CONFIGURATION_PATH && \
