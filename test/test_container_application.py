@@ -31,9 +31,15 @@ class TestVarnishApplicationContainer:
         self.s2i_app.cleanup()
 
     def test_run_s2i_usage(self):
+        """
+        Test if /usr/libexec/s2i/usage works properly
+        """
         assert self.s2i_app.s2i_usage()
 
     def test_docker_run_usage(self):
+        """
+        Test if podman run works properly
+        """
         assert PodmanCLIWrapper.call_podman_command(
             cmd=f"run --rm {VARS.IMAGE_NAME} &>/dev/null",
             return_output=False
@@ -48,8 +54,8 @@ class TestVarnishApplicationContainer:
     )
     def test_run_app_test(self, container_arg):
         """
-        Test checks if php-version is proper one
-        and specific pages returns expected message or return code.
+        Test checks if varnish starts properly
+        and response returns proper http://example.org
         """
         cid_file_name = self.s2i_app.app_name
         assert self.s2i_app.create_container(
