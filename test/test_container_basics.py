@@ -16,8 +16,7 @@ class TestVarnishBasicsContainer:
         """
         Test if /usr/libexec/s2i/usage works properly
         """
-        output = self.app.s2i_usage()
-        assert output
+        assert self.app.s2i_usage()
 
     def test_docker_run_usage(self):
         """
@@ -29,6 +28,9 @@ class TestVarnishBasicsContainer:
         ) == 0
 
     def test_scl_usage(self):
+        """
+        Test checks if varnish returns proper version
+        """
         assert f"varnish-{VARS.VERSION}" in PodmanCLIWrapper.podman_run_command(
             f"--rm {VARS.IMAGE_NAME} /bin/bash -c 'varnishd -V'"
         )
