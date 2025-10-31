@@ -6,7 +6,7 @@ specs:
       distros:
         - fedora-39-x86_64
       s2i_base: quay.io/fedora/s2i-core:39
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish"
       img_name: "fedora/varnish-7"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
@@ -17,7 +17,7 @@ specs:
       s2i_base: ubi8/s2i-core
       from_tag: "1"
       prod: "rhel8"
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish gcc"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish gcc"
       repo_setup: yum -y module enable varnish:6  && \
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       full_img_name: "{{ spec.img_name }}"
@@ -38,7 +38,7 @@ specs:
       s2i_base: ubi10/s2i-core
       from_tag: "latest"
       prod: "rhel10"
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish gcc"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish gcc"
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       full_img_name: "{{ spec.img_name }}"
       etc_path: /etc
@@ -51,7 +51,7 @@ specs:
       org: "sclorg"
       from_tag: "c9s"
       prod: "c9s"
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish gcc"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish gcc"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
@@ -64,7 +64,7 @@ specs:
       org: "sclorg"
       from_tag: "c10s"
       prod: "c10s"
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish gcc"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish gcc"
       img_name: "{{ spec.org }}/varnish-{{ spec.version }}-{{ spec.prod }}"
       full_img_name: "quay.io/{{ spec.img_name }}"
       etc_path: /etc
