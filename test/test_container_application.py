@@ -18,7 +18,7 @@ def build_s2i_app(app_path: Path) -> ContainerTestLib:
         app_path=app_path,
         s2i_args="--pull-policy=never",
         src_image=VARS.IMAGE_NAME,
-        dst_image=f"{VARS.IMAGE_NAME}-{app_name}"
+        dst_image=f"{VARS.IMAGE_NAME}-{app_name}",
     )
     return s2i_app
 
@@ -40,18 +40,14 @@ class TestVarnishApplicationContainer:
         """
         Test if podman run works properly
         """
-        assert PodmanCLIWrapper.call_podman_command(
-            cmd=f"run --rm {VARS.IMAGE_NAME} &>/dev/null",
-            return_output=False
-        ) == 0
+        assert (
+            PodmanCLIWrapper.call_podman_command(
+                cmd=f"run --rm {VARS.IMAGE_NAME} &>/dev/null", return_output=False
+            )
+            == 0
+        )
 
-    @pytest.mark.parametrize(
-        "container_arg",
-        [
-            "",
-            "--user 12345"
-        ]
-    )
+    @pytest.mark.parametrize("container_arg", ["", "--user=100001", "--user 12345"])
     def test_run_app_test(self, container_arg):
         """
         Test checks if varnish starts properly
@@ -59,7 +55,7 @@ class TestVarnishApplicationContainer:
         """
         cid_file_name = self.s2i_app.app_name
         assert self.s2i_app.create_container(
-            cid_file_name=cid_file_name, container_args=f"--user=100001 {container_arg}"
+            cid_file_name=cid_file_name, container_args=container_arg
         )
         assert ContainerImage.wait_for_cid(cid_file_name=cid_file_name)
         cid = self.s2i_app.get_cid(cid_file_name=cid_file_name)

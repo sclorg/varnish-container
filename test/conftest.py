@@ -3,16 +3,13 @@ import sys
 
 from pathlib import Path
 from collections import namedtuple
-from pytest import skip
 
 from container_ci_suite.utils import check_variables
 
 if not check_variables():
     sys.exit(1)
 
-Vars = namedtuple(
-    "Vars", ["OS", "VERSION", "IMAGE_NAME", "TEST_DIR"]
-)
+Vars = namedtuple("Vars", ["OS", "VERSION", "IMAGE_NAME", "TEST_DIR"])
 VERSION = os.getenv("VERSION")
 OS = os.getenv("TARGET").lower()
 
