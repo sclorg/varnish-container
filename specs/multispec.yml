@@ -28,7 +28,7 @@ specs:
       s2i_base: ubi9/s2i-core
       from_tag: "1"
       prod: "rhel9"
-      install_pkgs: "gettext hostname nss_wrapper-libs bind-utils varnish gcc"
+      install_pkgs: "gettext hostname nss_wrapper-libs varnish gcc"
       img_name: "{{ spec.prod }}/varnish-{{ spec.version }}"
       full_img_name: "{{ spec.img_name }}"
       etc_path: /etc
