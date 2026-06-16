@@ -23,6 +23,7 @@ than any application server, giving the website a significant speed up.
 
 The image can be used as a base image for other applications based on Varnish Cache 6.0 using Openshift's s2i feature.
 
+See [the Red Hat Enterprise Linux Application Streams Life Cycle page](https://access.redhat.com/support/policy/updates/rhel-app-streams-life-cycle) for information about support for this particular stream.
 
 Usage
 -----
